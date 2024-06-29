@@ -31,6 +31,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <InitTheme />
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <title>Senso Coffee</title>
       </head>
       <body className={`${(dmSerifDisplay.variable, inter.variable)} flex flex-col min-h-screen`}>
         <Suspense fallback={<Loading />}>
