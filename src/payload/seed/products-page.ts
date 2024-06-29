@@ -34,6 +34,7 @@ export const productsPage: Omit<Page, 'updatedAt' | 'createdAt' | 'id'> = {
     {
       blockName: 'Archive Block',
       blockType: 'archive',
+      displayAs: 'carousel',
       introContent: [
         {
           type: 'h4',
