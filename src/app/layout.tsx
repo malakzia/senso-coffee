@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Metadata } from 'next'
-import { DM_Serif_Display, Inter } from 'next/font/google'
+import { Inter, Raleway } from 'next/font/google'
 import { AdminBar } from './_components/AdminBar'
 import { Footer } from './_components/Footer'
 import { Header } from './_components/Header'
@@ -12,7 +12,7 @@ import './_css/app.scss'
 import '../../tailwind.css'
 import Loading from './loading'
 
-const dmSerifDisplay = DM_Serif_Display({
+const dmSerifDisplay = Raleway({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-dm-serif-display',
@@ -29,8 +29,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* <link rel="icon" href="/favicon.ico" sizes="32x32" /> */}
+        <link rel="icon" href="/logoMark.svg" type="image/svg+xml" />
         <title>Senso Coffee</title>
       </head>
       <body className={`${(dmSerifDisplay.variable, inter.variable)} flex flex-col min-h-screen`}>
