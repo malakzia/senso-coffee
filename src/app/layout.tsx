@@ -35,7 +35,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body
         className={`${(dmSerifDisplay.variable, inter.variable)} ${dmSerifDisplay.className} ${inter.className} flex flex-col min-h-screen`}> 
-        <Suspense fallback={<Loading />}>
+        
+        <Suspense fallback={<Loading />}> 
           <Providers>
             {/* <AdminBar /> */}
             {/* @ts-expect-error */}
