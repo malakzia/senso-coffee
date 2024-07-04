@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Metadata } from 'next'
-import { Inter, Raleway } from 'next/font/google'
+import { DM_Serif_Display, Inter } from 'next/font/google'
 import { AdminBar } from './_components/AdminBar'
 import { Footer } from './_components/Footer'
 import { Header } from './_components/Header'
@@ -12,7 +12,7 @@ import './_css/app.scss'
 import '../../tailwind.css'
 import Loading from './loading'
 
-const dmSerifDisplay = Raleway({
+const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-dm-serif-display',
