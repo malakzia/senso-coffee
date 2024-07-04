@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter&display=swap');
 @use './queries.scss' as *;
 @use './colors.scss' as *;
 @use './type.scss' as *;
 @import "./theme.scss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter&display=swap');
 
 :root {
   --base: 24px;
