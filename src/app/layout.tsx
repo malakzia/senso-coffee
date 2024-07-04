@@ -33,7 +33,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="icon" href="/logoMark.svg" type="image/svg+xml" />
         <title>Senso Coffee</title>
       </head>
-      <body className={`${(dmSerifDisplay.variable, inter.variable)} flex flex-col min-h-screen`}>
+      <body
+        className={`${(dmSerifDisplay.variable, inter.variable)} ${
+          dmSerifDisplay.className
+        } flex flex-col min-h-screen`}
+      >
         <Suspense fallback={<Loading />}>
           <Providers>
             {/* <AdminBar /> */}
