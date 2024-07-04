@@ -34,10 +34,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <title>Senso Coffee</title>
       </head>
       <body
-        className={`${(dmSerifDisplay.variable, inter.variable)} ${dmSerifDisplay.className} ${
-          inter.className
-        } flex flex-col min-h-screen`}
-      >
+        className={`${(dmSerifDisplay.variable, inter.variable)} ${dmSerifDisplay.className} ${inter.className} flex flex-col min-h-screen`}> 
         <Suspense fallback={<Loading />}>
           <Providers>
             {/* <AdminBar /> */}
