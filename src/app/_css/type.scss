@@ -1,5 +1,5 @@
 @use 'queries' as *;
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter&display=swap');
+@use 'app' as *;
 
 %h1,
 %h2,
@@ -103,7 +103,7 @@
   margin: 0px;
   font-size: 16px;
   line-height: 24px;
-  font-family: 'Inter';
+  font-family: var(--font-mono) !important;
   // text-transform: uppercase;
 
   @include mid-break {
