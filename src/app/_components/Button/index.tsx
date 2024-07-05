@@ -48,7 +48,7 @@ export const Button: React.FC<Props> = ({
 
   const content = (
     <div className={classes.content}>
-      <span className={classes.D}>{label}</span>
+      <span style={{ color: 'white' }} className={classes.D}>{label}</span>
       {appearance === 'primary' && (
         <Image alt="Arrow Up" width={32} height={32} src={'/assets/icons/ArrowUpRight.svg'} />
       )}
