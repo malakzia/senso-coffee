@@ -4,10 +4,10 @@ const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
   siteName: 'Senso Coffee',
   title: 'Senso Coffee',
-  description: 'An open-source e-commerce store built with Payload and Next.js.',
+  description: 'Buy our signature roasted ground coffee, capsules and accessories.',
   images: [
     {
-      url: 'https://payloadcms.com/images/og-image.jpg',
+      url: '/assets/images/senso-hero-image.png',
     },
   ],
 }
