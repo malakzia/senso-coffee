@@ -7,7 +7,7 @@ const defaultOpenGraph: Metadata['openGraph'] = {
   description: 'Buy our signature roasted ground coffee, capsules and accessories.',
   images: [
     {
-      url: '/assets/images/senso-hero-image.png',
+      url: '/assets/images/senso-hero-image.png', 
     },
   ],
 }
