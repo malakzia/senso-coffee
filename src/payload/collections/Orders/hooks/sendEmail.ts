@@ -12,8 +12,6 @@ const convertImageToBase64 = async (imageUrl: string): Promise<string> => {
 export const sendEmail: AfterChangeHook<Order> = async ({ doc, req, operation }) => {
   const { id, customerEmail, customerName, items, total } = doc;
 
-  console.log('Send Email Doc: ', doc);
-
   if (operation === 'create') {
     const itemRowsPromises = items?.map(async (item) => {
       const product = typeof item.product === 'string' ? item.product : item.product.title;

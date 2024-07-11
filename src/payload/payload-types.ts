@@ -475,7 +475,7 @@ export interface Product {
   productStatus?: ('inStock' | 'outOfStock') | null;
   priceJSON: string;
   productImages: {
-    media?: string | Media | null;
+    media?: Media | null;
     id?: string | null;
   }[];
   enablePaywall?: boolean | null;
