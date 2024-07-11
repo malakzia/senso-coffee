@@ -38,7 +38,9 @@ export const LowImpactHero: React.FC<Page['hero']> = ({
           >
             {heading}
           </h1>
-          <p className="text-b14 lg:text-b16 leading-subHeadingLH2 text-white mt-6 font-normal">{subHeading}</p>
+          <p className="text-b14 lg:text-b16 leading-subHeadingLH2 text-white mt-6 font-normal">
+            {subHeading}
+          </p>
           {Array.isArray(links) && links.length > 0 && (
             <ul
               className="flex flex-row gap-6 pl-0 pt-6 list-none my-0 justify-center

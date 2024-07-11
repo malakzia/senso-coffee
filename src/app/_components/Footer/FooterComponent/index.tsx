@@ -45,7 +45,7 @@ const FooterComponent = ({ footer, settings }: { footer: Footer; settings: Setti
                   el="link"
                   appearance="none"
                 >
-                  <Image src={icon?.url} alt={icon?.alt} width={28} height={28} />
+                  <Image src={icon?.url} alt={icon?.alt || 'Button Icon'} width={28} height={28} />
                 </Button>
               )
             })}

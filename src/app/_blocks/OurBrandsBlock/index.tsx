@@ -19,7 +19,7 @@ const BrandMemoized: React.FC<{ brand: Brand }> = React.memo(({ brand }) => {
       src={`${process.env.NEXT_PUBLIC_SERVER_URL}/media/${filename}`}
       width={180}
       height={48}
-      alt={alt}
+      alt={alt || 'Brand Image'}
     />
   )
 })

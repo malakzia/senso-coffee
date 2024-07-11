@@ -106,7 +106,7 @@ export const InstaFeedBlock: React.FC<Props> = ({ heading }) => {
                     ) : (
                       <Image
                         src={post.media_url}
-                        alt={post.caption ?? ''}
+                        alt={post.caption ?? 'Post Caption'}
                         className="w-full h-full object-cover"
                         width={300}
                         height={300}
