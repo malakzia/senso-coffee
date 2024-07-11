@@ -1,41 +1,52 @@
-import type { AfterChangeHook } from 'payload/dist/collections/config/types';
-import type { Order } from '../../../payload-types';
+import type { AfterChangeHook } from 'payload/dist/collections/config/types'
+import type { Order } from '../../../payload-types'
 
 const convertImageToBase64 = async (imageUrl: string): Promise<string> => {
-  const response = await fetch(imageUrl);
-  const arrayBuffer = await response.arrayBuffer();
-  const base64Image = Buffer.from(arrayBuffer).toString('base64');
-  const mimeType = response.headers.get('content-type');
-  return `data:${mimeType};base64,${base64Image}`;
-};
+  const response = await fetch(imageUrl)
+  const arrayBuffer = await response.arrayBuffer()
+  const base64Image = Buffer.from(arrayBuffer).toString('base64')
+  const mimeType = response.headers.get('content-type')
+  return `data:${mimeType};base64,${base64Image}`
+}
 
 export const sendEmail: AfterChangeHook<Order> = async ({ doc, req, operation }) => {
-  const { id, customerEmail, customerName, items, total } = doc;
+  const { id, customerEmail, customerName, items, total } = doc
 
   if (operation === 'create') {
-    const itemRowsPromises = items?.map(async (item) => {
-      const product = typeof item.product === 'string' ? item.product : item.product.title;
-      const productImageFilename =
-        typeof item.product === 'string' ? '' : item.product.productImages[0]?.media?.filename;
-      const productImageUrl = productImageFilename
-        ? `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${productImageFilename}`
-        : '';
-      const productImageBase64 = productImageUrl ? await convertImageToBase64(productImageUrl) : '';
-      
-      return `
+    const itemRowsPromises =
+      items?.map(async item => {
+        const product = typeof item.product === 'string' ? item.product : item.product.title
+        const productImageFilename =
+          typeof item.product === 'string' ? '' : item.product.productImages[0]?.media?.filename
+        const productImageUrl = productImageFilename
+          ? `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${productImageFilename}`
+          : ''
+        const productImageBase64 = productImageUrl
+          ? await convertImageToBase64(productImageUrl)
+          : ''
+
+        return `
         <tr>
           <td style="padding: 8px; border: 1px solid #ddd;">
-            ${productImageBase64 ? `<img src="${productImageBase64}" alt="${product}" style="width: 50px; height: auto;"/>` : ''}
+            ${
+              productImageBase64
+                ? `<img src="${productImageBase64}" alt="${product}" style="width: 50px; height: auto;"/>`
+                : ''
+            }
           </td>
           <td style="padding: 8px; border: 1px solid #ddd;">${product}</td>
-          <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">${item.quantity}</td>
-          <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">${item.price} LBP</td>
+          <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">${
+            item.quantity
+          }</td>
+          <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">${
+            item.price
+          } LBP</td>
         </tr>
-      `;
-    }) || [];
+      `
+      }) || []
 
-    const itemRows = await Promise.all(itemRowsPromises);
-    const itemRowsHtml = itemRows.join('');
+    const itemRows = await Promise.all(itemRowsPromises)
+    const itemRowsHtml = itemRows.join('')
 
     req.payload.sendEmail({
       to: customerEmail,
@@ -165,7 +176,7 @@ export const sendEmail: AfterChangeHook<Order> = async ({ doc, req, operation })
         </body>
         </html>
       `,
-    });
+    })
   }
-  return;
-};
+  return
+}
