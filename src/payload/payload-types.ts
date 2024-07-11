@@ -475,7 +475,7 @@ export interface Product {
   productStatus?: ('inStock' | 'outOfStock') | null;
   priceJSON: string;
   productImages: {
-    media?: Media | null;
+    media?: string | Media | null;
     id?: string | null;
   }[];
   enablePaywall?: boolean | null;
@@ -754,6 +754,7 @@ export interface Header {
   id: string;
   navItems?:
     | {
+        enableSubMenu?: boolean | null;
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
@@ -765,7 +766,29 @@ export interface Header {
           url?: string | null;
           label: string;
         };
-        id?: string | null;
+        subMenuItems?:
+          | {
+              menuHeading: string;
+              subMenuLinks?:
+                | {
+                    link: {
+                      type?: ('reference' | 'custom') | null;
+                      newTab?: boolean | null;
+                      icon?: string | Media | null;
+                      reference?: {
+                        relationTo: 'pages';
+                        value: string | Page;
+                      } | null;
+                      url?: string | null;
+                      label: string;
+                    };
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+          id?: string | null;
       }[]
     | null;
   updatedAt?: string | null;

@@ -13,9 +13,35 @@ export const Header: GlobalConfig = {
       type: 'array',
       maxRows: 6,
       fields: [
+        {
+          name: 'enableSubMenu',
+          type: 'checkbox',
+        },
         link({
           appearances: false,
         }),
+        {
+          name: 'subMenuItems',
+          label: 'Sub Menu Navigations',
+          type: 'array',
+          admin: {
+            condition: (__, { enableSubMenu }) => Boolean(enableSubMenu),
+          },
+          fields: [
+            {
+              name: 'menuHeading',
+              label: 'Menu Heading',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'subMenuLinks',
+              label: 'Sub Menu Links',
+              type: 'array',
+              fields: [link({ appearances: false })],
+            },
+          ],
+        },
       ],
     },
   ],

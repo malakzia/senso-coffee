@@ -4,7 +4,14 @@ import { MEDIA_FIELDS } from './media'
 export const HEADER = `
   Header {
     navItems {
+      enableSubMenu
       link ${LINK_FIELDS({ disableAppearance: true })}
+      subMenuItems {
+        menuHeading
+        subMenuLinks {
+          link ${LINK_FIELDS({ disableAppearance: true })}
+        }
+      }
 		}
   }
 `
