@@ -43,7 +43,7 @@ export const InstaFeedBlock: React.FC<Props> = ({ heading, subHeading }) => {
       url.searchParams.append('fields', 'id,caption,media_url,media_type,timestamp,permalink')
       url.searchParams.append(
         'access_token',
-        'IGQWRNUkY2UDNQczdMQzRlX2IxemdUQVVFak56bHhYdEtRb1lKNTdFeUctakJYdDhuOFRnc0VEUG9yQnIybkE3aGZAQUVNWbk5MMXZARVDZAxRGV5UTBseFpFeWo2SUZA2TTBUUFVkSmlUN3U2OVhqZAlRFd2NzS0VKVXcZD',
+        'IGQWRNbE5iM05kUjU2MEZAnd0EwbUdUaTJ2aTFfZAW5na29qaDZACbnMzSmNaZAHhqX1pIWU9LaWFDalF3SmVxWTNkUDdvWlk4eHRNM1EzaTJrbk9pLW8wMzFVY2xNUEZACRVFOSHJZANC1MWkRZAMmdpODZA1XzRUaVhqd0kZD',
       )
 
       const response = await fetch(url.toString())
