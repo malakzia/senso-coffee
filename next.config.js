@@ -39,15 +39,15 @@ const nextConfig = {
     // Set the `Content-Security-Policy` header as a security measure to prevent XSS attacks
     // It works by explicitly whitelisting trusted sources of content for your website
     // This will block all inline scripts and styles except for those that are allowed
-    // headers.push({
-    //   source: '/(.*)',
-    //   headers: [
-    //     {
-    //       key: 'Content-Security-Policy',
-    //       value: "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://checkout.stripe.com https://api.stripe.com https://maps.googleapis.com https://graph.instagram.com; frame-src 'self';",
-    //     },
-    //   ],
-    // })
+    headers.push({
+      source: '/(.*)',
+      headers: [
+        {
+          key: 'Content-Security-Policy',
+          value: ContentSecurityPolicy,
+        },
+      ],
+    })
 
     return headers
   },
