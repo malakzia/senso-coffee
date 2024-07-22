@@ -18,8 +18,6 @@ export const ReviewsBlock: React.FC<
     const fetchReviews = async () => {
       try {
         const fetchedReviews = await fetchDocs<Review>('reviews')
-        console.log('Fetched Reviews: ', fetchReviews)
-
         setReviews(fetchedReviews)
       } catch (err) {
         console.log(err)

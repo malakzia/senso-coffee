@@ -57,7 +57,7 @@ const FooterComponent = ({ footer, settings }: { footer: Footer; settings: Setti
         "
         >
           {navItemParent.map(parent => (
-            <div className="flex flex-col gap-4 min-w-[252px]">
+            <div key={parent?.id} className="flex flex-col gap-4 min-w-[252px]">
               <h6
                 className="text-h6 leading-headingLH2 text-center
               lg:text-left

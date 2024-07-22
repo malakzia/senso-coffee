@@ -2820,6 +2820,7 @@ input ContactformBlock_Media_where_or {
 
 type InstaFeedBlock {
   heading: String
+  subHeading: String
   id: String
   blockName: String
   blockType: String

@@ -189,5 +189,6 @@ export const INSTA_FEED_BLOCK = `
 ...on InstaFeedBlock {
   blockType
   heading
+  subHeading
 }
 `

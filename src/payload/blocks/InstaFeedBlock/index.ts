@@ -8,7 +8,12 @@ export const InstaFeedBlock: Block = {
     {
       name: 'heading',
       type: 'text',
-      label: 'Instagram Section Heading',
+      label: 'Instagram Username',
+    },
+    {
+      name: 'subHeading',
+      type: 'text',
+      label: 'Short Description',
     },
   ],
 }

@@ -30,6 +30,11 @@ type Result = {
   totalPages: number
 }
 
+type CustomScrollbarDotsProps = {
+  onClick: () => void
+  active: boolean
+}
+
 export type Props = {
   categories?: ArchiveBlockProps['categories']
   className?: string
@@ -226,6 +231,17 @@ export const CollectionArchive: React.FC<Props> = props => {
     },
   }
 
+  const CustomScrollbarDots: React.FC<CustomScrollbarDotsProps> = ({ onClick, active }) => {
+    return (
+      <div
+        className={[classes.customScrollbarDots, active ? classes.customScrollbarActive : '']
+          .filter(Boolean)
+          .join(' ')}
+        onClick={onClick}
+      ></div>
+    )
+  }
+
   return (
     <div className={[classes.collectionArchive, className].filter(Boolean).join(' ')}>
       <div className={classes.scrollRef} ref={scrollRef} />
@@ -261,7 +277,7 @@ export const CollectionArchive: React.FC<Props> = props => {
                 <div className="grid grid-cols-2 lg:grid-cols-3 grid-flow-row gap-4">
                   {results.docs?.map((result, index) => {
                     if (typeof result === 'object' && result !== null) {
-                      return <Card doc={result} relationTo={relationTo} showCategories />
+                      return <Card key={index} doc={result} relationTo={relationTo} showCategories />
                     }
                     return null
                   })}
@@ -292,12 +308,13 @@ export const CollectionArchive: React.FC<Props> = props => {
               infinite={true}
               showDots={true}
               responsive={responsive}
-              containerClass='carousel-container'
+              containerClass="carousel-container"
+              customDot={<CustomScrollbarDots />}
             >
               {results.docs?.map((result, index) => {
                 if (typeof result === 'object' && result !== null) {
                   return (
-                    <div className="h-full">
+                    <div key={index} className="h-full">
                       <ProductsCarousel doc={result} relationTo={relationTo} showCategories />
                     </div>
                   )

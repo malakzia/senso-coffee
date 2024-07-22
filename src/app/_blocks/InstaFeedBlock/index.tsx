@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
 import React, { useEffect, useState } from 'react'
 import { Page } from '../../../payload/payload-types'
-import classes from './index.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
+import { LoadingShimmer } from '../../_components/LoadingShimmer'
 
 type Props = Extract<Page['layout'][0], { blockType: 'instaFeedBlock' }> & {
   id?: string
@@ -31,49 +31,35 @@ type InstagramFeed = {
   paging?: InstagramPaging
 }
 
-export const InstaFeedBlock: React.FC<Props> = ({ heading }) => {
+export const InstaFeedBlock: React.FC<Props> = ({ heading, subHeading }) => {
   const [instagramFeed, setInstagramFeed] = useState<InstagramFeed | null>(null)
-  const [after, setAfter] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
 
-  const fetchFeed = async (after: string | null = null) => {
+  const fetchFeed = async () => {
     try {
-      const url = new URL("https://graph.instagram.com/me/media")
-      url.searchParams.append("scope", "user_profile,user_media,instagram_graph_user_profile")
-      url.searchParams.append("fields", "id,caption,media_url,media_type,timestamp,permalink")
-      url.searchParams.append("access_token", "IGQWROc1ZAtTHBvaEFNTDRreFd6M2ZAmbmYyeGE3b3pzek9WYUMzN0gzT2hneXJDV3dFNlFFSklWNFIxVWF5ZAERoNXRaRW9HU2VYNDhjbXJwQl82M0NpT1k2T190QlRaOEFwbGUyN0dkWUJUYVU0Uk13MDQ5Unp5dTgZD")
-      if (after) {
-        url.searchParams.append("after", after)
-      }
+      const url = new URL('https://graph.instagram.com/me/media')
+      url.searchParams.append('scope', 'user_profile,user_media,instagram_graph_user_profile')
+      url.searchParams.append('fields', 'id,caption,media_url,media_type,timestamp,permalink')
+      url.searchParams.append(
+        'access_token',
+        'IGQWRNUkY2UDNQczdMQzRlX2IxemdUQVVFak56bHhYdEtRb1lKNTdFeUctakJYdDhuOFRnc0VEUG9yQnIybkE3aGZAQUVNWbk5MMXZARVDZAxRGV5UTBseFpFeWo2SUZA2TTBUUFVkSmlUN3U2OVhqZAlRFd2NzS0VKVXcZD',
+      )
 
-      const response = await fetch(url.toString(), {
-        headers: {
-          'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://checkout.stripe.com https://api.stripe.com https://maps.googleapis.com https://graph.instagram.com; frame-src 'self"
-        }
-      })
-      console.log(response)
+      const response = await fetch(url.toString())
       const result = await response.json()
 
       if (response.ok) {
-        setInstagramFeed((prevFeed) => {
-          if (!prevFeed) return result
-          return {
-            ...result,
-            data: [...prevFeed.data, ...result.data],
-          }
-        })
-        setAfter(result.paging?.cursors.after || null)
+        setInstagramFeed(result)
       } else {
         setError(result.error.message)
       }
     } catch (err: any) {
       console.error('Error fetching Instagram feed:', err.message)
       setError(err.message)
+    } finally {
+      setLoading(false) // Set loading to false once the data is fetched
     }
-  }
-
-  const loadMore = () => {
-    fetchFeed(after)
   }
 
   useEffect(() => {
@@ -84,18 +70,24 @@ export const InstaFeedBlock: React.FC<Props> = ({ heading }) => {
     <>
       {error && <p className="text-red-500 hidden">{error}</p>}
 
-      {instagramFeed && (
-        <section id="about-senso-distributors" className="bg-cover bg-no-repeat bg-center hidden">
-          <div className="container mx-auto py-8 px-4 flex-col flex lg:py-16 lg:px-8 lg:flex-row items-center">
-            <h2 className="text-2xl font-semibold">{heading || "Instagram Feed"}</h2>
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {instagramFeed.data.map((post: InstagramPost) => (
-                <div key={post.id} className="relative group w-full h-[300px]">
+      <section id="instagram-feeds" className="bg-brand-light-bg">
+        <div className="container mx-auto py-8 px-4 flex-col flex lg:py-16 lg:px-8 items-center">
+          <h4 className="text-h4 font-normal text-brand-dark tracking-tight">{heading || ''}</h4>
+          <p className="text-b16 font-normal text-brand-dark mt-3">{subHeading || ''}</p>
+          {loading ? (
+            <LoadingShimmer number={6} height={210} /> 
+          ) : (
+            <div className="w-full grid grid-cols-1 lg:grid-cols-6 gap-6 min-h-[240px] mt-8">
+              {instagramFeed?.data?.slice(0, 6).map((post: InstagramPost) => (
+                <div
+                  key={post.id}
+                  className="relative group w-full max-w-[210px] max-h-[210px] h-full"
+                >
                   <Link
                     href={post.permalink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative"
+                    className="relative flex"
                   >
                     {post.media_type === 'VIDEO' ? (
                       <video
@@ -107,23 +99,22 @@ export const InstaFeedBlock: React.FC<Props> = ({ heading }) => {
                       <Image
                         src={post.media_url}
                         alt={post.caption ?? 'Post Caption'}
-                        className="w-full h-full object-cover"
-                        width={300}
-                        height={300}
+                        className="w-full h-full max-h-[210px] max-w-[210px] object-cover"
+                        width={210}
+                        height={210}
                       />
                     )}
 
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-black bg-opacity-50 flex items-center justify-center p-4 w-full h-[300px]">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-black bg-opacity-50 flex items-center justify-center p-4 w-full max-w-[210px] h-full max-h-[210px]">
                       <p className="text-white text-center text-xs truncate">{post.caption}</p>
                     </div>
                   </Link>
                 </div>
               ))}
             </div>
-            {after && <button onClick={loadMore} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Load More</button>}
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
     </>
   )
 }

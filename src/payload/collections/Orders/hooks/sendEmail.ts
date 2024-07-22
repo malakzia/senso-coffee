@@ -1,14 +1,6 @@
 import type { AfterChangeHook } from 'payload/dist/collections/config/types'
 import type { Order } from '../../../payload-types'
 
-const convertImageToBase64 = async (imageUrl: string): Promise<string> => {
-  const response = await fetch(imageUrl)
-  const arrayBuffer = await response.arrayBuffer()
-  const base64Image = Buffer.from(arrayBuffer).toString('base64')
-  const mimeType = response.headers.get('content-type')
-  return `data:${mimeType};base64,${base64Image}`
-}
-
 export const sendEmail: AfterChangeHook<Order> = async ({ doc, req, operation }) => {
   const { id, customerEmail, customerName, items, total } = doc
 
@@ -16,31 +8,19 @@ export const sendEmail: AfterChangeHook<Order> = async ({ doc, req, operation })
     const itemRowsPromises =
       items?.map(async item => {
         const product = typeof item.product === 'string' ? item.product : item.product.title
-        const productImageFilename =
-          typeof item.product === 'string' ? '' : item.product.productImages[0]?.media?.filename
-        const productImageUrl = productImageFilename
-          ? `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${productImageFilename}`
-          : ''
-        const productImageBase64 = productImageUrl
-          ? await convertImageToBase64(productImageUrl)
-          : ''
 
         return `
         <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">
-            ${
-              productImageBase64
-                ? `<img src="${productImageBase64}" alt="${product}" style="width: 50px; height: auto;"/>`
-                : ''
-            }
-          </td>
           <td style="padding: 8px; border: 1px solid #ddd;">${product}</td>
           <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">${
             item.quantity
           }</td>
           <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">${
             item.price
-          } LBP</td>
+          } LBP</td>  
+          <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">${(
+            item.price * item.quantity
+          ).toFixed(2)} LBP</td>
         </tr>
       `
       }) || []
@@ -116,10 +96,6 @@ export const sendEmail: AfterChangeHook<Order> = async ({ doc, req, operation })
                 border: none;
                 border-bottom: 1px solid #ddd;
               }
-              td img {
-                max-width: 50px;
-                margin-right: 10px;
-              }
               td::before {
                 content: attr(data-label);
                 font-weight: bold;
@@ -127,9 +103,6 @@ export const sendEmail: AfterChangeHook<Order> = async ({ doc, req, operation })
                 text-align: left;
                 padding-right: 10px;
                 box-sizing: border-box;
-              }
-              td:nth-child(2)::before {
-                display: none;
               }
               td:last-child {
                 text-align: right;
@@ -149,10 +122,10 @@ export const sendEmail: AfterChangeHook<Order> = async ({ doc, req, operation })
               <table>
                 <thead>
                   <tr>
-                    <th>Product Image</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
                     <th>Price</th>
+                    <th>Sub Total</th>
                   </tr>
                 </thead>
                 <tbody>

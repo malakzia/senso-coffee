@@ -295,6 +295,7 @@ export interface Page {
       }
     | {
         heading?: string | null;
+        subHeading?: string | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'instaFeedBlock';
@@ -475,7 +476,7 @@ export interface Product {
   productStatus?: ('inStock' | 'outOfStock') | null;
   priceJSON: string;
   productImages: {
-    media?: Media | null;
+    media?: string | Media | null;
     id?: string | null;
   }[];
   enablePaywall?: boolean | null;
@@ -788,7 +789,7 @@ export interface Header {
               id?: string | null;
             }[]
           | null;
-          id?: string | null;
+        id?: string | null;
       }[]
     | null;
   updatedAt?: string | null;

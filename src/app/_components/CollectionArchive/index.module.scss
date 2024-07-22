@@ -1,6 +1,17 @@
 @import '../../_css/common';
 
-// this is to make up for the space taken by the fixed header, since the scroll method does not accept an offset parameter
+.customScrollbarDots {
+  width: 100%;
+  height: 3px;
+  background-color: #dddddd;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.customScrollbarActive {
+  background-color: #211709;
+}
+
 .scrollRef {
   position: absolute;
   left: 0;

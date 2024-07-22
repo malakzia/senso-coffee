@@ -23,8 +23,6 @@ export type RelatedProductsProps = {
 export const RelatedProducts: React.FC<RelatedProductsProps> = props => {
   const { introContent, docs, relationTo } = props
 
-  console.log("Related Products: ", docs);
-
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },

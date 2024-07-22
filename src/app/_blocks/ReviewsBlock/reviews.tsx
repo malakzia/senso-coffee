@@ -49,8 +49,8 @@ export const ReviewsWrapper: React.FC<ReviewsWrapperProps> = ({ title, reviews }
                     arrows={false}
                     containerClass='carousel-container'
                     responsive={responsive}>
-                    {reviews?.map(review => (
-                        <div className='flex justify-center'>
+                    {reviews?.map((review, index) => (
+                        <div key={index}  className='flex justify-center'>
                             <div className='text-brand-dark flex flex-col max-w-[640px] w-full' key={review.id}>
                                 <p className='text-b18 leading-headingLH2 font-normal
                             lg:text-h6

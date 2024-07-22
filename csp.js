@@ -10,7 +10,7 @@ const policies = {
   ],
   'child-src': ["'self'"],
   'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
-  'img-src': ["'self'", 'https://*.stripe.com', 'https://raw.githubusercontent.com'],
+  'img-src': ["'self'", 'https://*.stripe.com', 'https://raw.githubusercontent.com', 'https://graph.instagram.com'],
   'font-src': ["'self'"],
   'frame-src': [
     "'self'",
@@ -23,6 +23,8 @@ const policies = {
     'https://checkout.stripe.com',
     'https://api.stripe.com',
     'https://maps.googleapis.com',
+    'https://graph.instagram.com',
+    'https://graph.instagram.com/me/media'
   ],
 }
 
