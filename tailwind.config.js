@@ -58,7 +58,7 @@ module.exports = {
         'brand-red': '#DC143C',
         'brand-yellow': '#FDCB2E',
         'brand-lighter-gray': '#E4E3DF',
-        'brand-ligth-brown': '#F8F5EC',
+        'brand-light-brown': '#F8F5EC',
         'brand-light-bg': '#EFF1F3',
       },
       boxShadow: {

@@ -51,6 +51,7 @@ export default buildConfig({
     bundler: webpackBundler(),
     css: path.resolve(__dirname, "../../tailwind.css"),
     meta: {
+      titleSuffix: ' - Senso Coffee',
       favicon: "/logoMark.svg",
       ogImage: "/sensoLogo-light.svg",
     },

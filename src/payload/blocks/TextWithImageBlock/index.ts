@@ -1,6 +1,7 @@
 import type { Block } from 'payload/types'
 import richText from '../../fields/richText'
 import linkGroup from '../../fields/linkGroup'
+import link from '../../fields/link'
 
 export const TextWithImageBlock: Block = {
   slug: 'textWithImageBlock',

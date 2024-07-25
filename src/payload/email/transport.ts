@@ -8,7 +8,7 @@ let email
         service: 'gmail',
         auth: {
           user: 'abbas143186@gmail.com',
-          pass: 'wdry masq qppt bfyb',
+          pass: 'ujzx fcfm cyzr jvlz',
         },
     },
   }
