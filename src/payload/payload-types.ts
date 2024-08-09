@@ -596,6 +596,11 @@ export interface Order {
   customerContactNumber?: number | null;
   customerEmail?: string | null;
   customerAddress?: string | null;
+  homeAddress?: string | null;
+  streetNo?: string | null;
+  descrptiveAddress?: string | null;
+  city: string;
+  postalCode: number;
   stripePaymentIntentID?: string | null;
   total: number;
   items?:
@@ -725,6 +730,24 @@ export interface Settings {
   id: string;
   productsPage?: (string | null) | Page;
   siteLogo: string | Media;
+  siteCurrency:
+    | 'LBP'
+    | 'SAR'
+    | 'AED'
+    | 'BHD'
+    | 'KWD'
+    | 'OMR'
+    | 'JOD'
+    | 'USD'
+    | 'EUR'
+    | 'GBP'
+    | 'JPY'
+    | 'AUD'
+    | 'CAD'
+    | 'CHF'
+    | 'CNY'
+    | 'SEK'
+    | 'NZD';
   socials?:
     | {
         link: {

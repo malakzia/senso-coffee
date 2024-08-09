@@ -9,7 +9,7 @@ export const adminsOrOrderedBy: Access = ({ req: { user } }) => {
 
   return {
     orderedBy: {
-      equals: user?.id,
+      equals: user?.id || '',
     },
   }
 }

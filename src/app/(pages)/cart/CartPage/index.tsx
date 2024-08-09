@@ -11,6 +11,7 @@ import { useCart } from '../../../_providers/Cart'
 import CartItem from '../CartItem'
 
 import classes from './index.module.scss'
+import { useCurrency } from '../../../_providers/CurrencyContext'
 
 export const CartPage: React.FC<{
   settings: Settings
@@ -22,6 +23,8 @@ export const CartPage: React.FC<{
   const { user } = useAuth()
 
   const { cart, cartIsEmpty, addItemToCart, cartTotal, hasInitializedCart } = useCart()
+
+  const { currency } = useCurrency()
 
   return (
     <Fragment>
@@ -109,7 +112,7 @@ export const CartPage: React.FC<{
 
                 <div className={classes.row}>
                   <p className="text-b18 font-semibold leading-headingLH2 text-brand-dark">Total</p>
-                  <p className={classes.cartTotal}>{cartTotal.formatted} LBP</p>
+                  <p className={classes.cartTotal}>{cartTotal.formatted}</p>
                 </div>
 
                 <Button

@@ -6491,6 +6491,11 @@ type Order {
   customerContactNumber: Float
   customerEmail: EmailAddress
   customerAddress: String
+  homeAddress: String
+  streetNo: String
+  descrptiveAddress: String
+  city: String!
+  postalCode: Float!
   stripePaymentIntentID: String
   total: Float!
   items: [Order_Items!]
@@ -6565,6 +6570,11 @@ input Order_where {
   customerContactNumber: Order_customerContactNumber_operator
   customerEmail: Order_customerEmail_operator
   customerAddress: Order_customerAddress_operator
+  homeAddress: Order_homeAddress_operator
+  streetNo: Order_streetNo_operator
+  descrptiveAddress: Order_descrptiveAddress_operator
+  city: Order_city_operator
+  postalCode: Order_postalCode_operator
   total: Order_total_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
@@ -6627,6 +6637,58 @@ input Order_customerAddress_operator {
   not_in: [String]
   all: [String]
   exists: Boolean
+}
+
+input Order_homeAddress_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Order_streetNo_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Order_descrptiveAddress_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Order_city_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Order_postalCode_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
 }
 
 input Order_total_operator {
@@ -6716,6 +6778,11 @@ input Order_where_and {
   customerContactNumber: Order_customerContactNumber_operator
   customerEmail: Order_customerEmail_operator
   customerAddress: Order_customerAddress_operator
+  homeAddress: Order_homeAddress_operator
+  streetNo: Order_streetNo_operator
+  descrptiveAddress: Order_descrptiveAddress_operator
+  city: Order_city_operator
+  postalCode: Order_postalCode_operator
   total: Order_total_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
@@ -6734,6 +6801,11 @@ input Order_where_or {
   customerContactNumber: Order_customerContactNumber_operator
   customerEmail: Order_customerEmail_operator
   customerAddress: Order_customerAddress_operator
+  homeAddress: Order_homeAddress_operator
+  streetNo: Order_streetNo_operator
+  descrptiveAddress: Order_descrptiveAddress_operator
+  city: Order_city_operator
+  postalCode: Order_postalCode_operator
   total: Order_total_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
@@ -6760,6 +6832,11 @@ type OrdersDocAccessFields {
   customerContactNumber: OrdersDocAccessFields_customerContactNumber
   customerEmail: OrdersDocAccessFields_customerEmail
   customerAddress: OrdersDocAccessFields_customerAddress
+  homeAddress: OrdersDocAccessFields_homeAddress
+  streetNo: OrdersDocAccessFields_streetNo
+  descrptiveAddress: OrdersDocAccessFields_descrptiveAddress
+  city: OrdersDocAccessFields_city
+  postalCode: OrdersDocAccessFields_postalCode
   total: OrdersDocAccessFields_total
   items: OrdersDocAccessFields_items
   updatedAt: OrdersDocAccessFields_updatedAt
@@ -6878,6 +6955,121 @@ type OrdersDocAccessFields_customerAddress_Update {
 }
 
 type OrdersDocAccessFields_customerAddress_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_homeAddress {
+  create: OrdersDocAccessFields_homeAddress_Create
+  read: OrdersDocAccessFields_homeAddress_Read
+  update: OrdersDocAccessFields_homeAddress_Update
+  delete: OrdersDocAccessFields_homeAddress_Delete
+}
+
+type OrdersDocAccessFields_homeAddress_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_homeAddress_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_homeAddress_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_homeAddress_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_streetNo {
+  create: OrdersDocAccessFields_streetNo_Create
+  read: OrdersDocAccessFields_streetNo_Read
+  update: OrdersDocAccessFields_streetNo_Update
+  delete: OrdersDocAccessFields_streetNo_Delete
+}
+
+type OrdersDocAccessFields_streetNo_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_streetNo_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_streetNo_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_streetNo_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_descrptiveAddress {
+  create: OrdersDocAccessFields_descrptiveAddress_Create
+  read: OrdersDocAccessFields_descrptiveAddress_Read
+  update: OrdersDocAccessFields_descrptiveAddress_Update
+  delete: OrdersDocAccessFields_descrptiveAddress_Delete
+}
+
+type OrdersDocAccessFields_descrptiveAddress_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_descrptiveAddress_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_descrptiveAddress_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_descrptiveAddress_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_city {
+  create: OrdersDocAccessFields_city_Create
+  read: OrdersDocAccessFields_city_Read
+  update: OrdersDocAccessFields_city_Update
+  delete: OrdersDocAccessFields_city_Delete
+}
+
+type OrdersDocAccessFields_city_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_city_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_city_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_city_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_postalCode {
+  create: OrdersDocAccessFields_postalCode_Create
+  read: OrdersDocAccessFields_postalCode_Read
+  update: OrdersDocAccessFields_postalCode_Update
+  delete: OrdersDocAccessFields_postalCode_Delete
+}
+
+type OrdersDocAccessFields_postalCode_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_postalCode_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_postalCode_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_postalCode_Delete {
   permission: Boolean!
 }
 
@@ -9919,6 +10111,7 @@ type PayloadPreferencesDeleteDocAccess {
 type Settings {
   productsPage: Page
   siteLogo(where: Settings_SiteLogo_where): Media!
+  siteCurrency: Settings_siteCurrency!
   socials: [Settings_Socials!]
   createAccountBanner(where: Settings_CreateAccountBanner_where): Media!
   loginBanner(where: Settings_LoginBanner_where): Media!
@@ -10087,6 +10280,26 @@ input Settings_SiteLogo_where_or {
   id: Settings_SiteLogo_id_operator
   AND: [Settings_SiteLogo_where_and]
   OR: [Settings_SiteLogo_where_or]
+}
+
+enum Settings_siteCurrency {
+  LBP
+  SAR
+  AED
+  BHD
+  KWD
+  OMR
+  JOD
+  USD
+  EUR
+  GBP
+  JPY
+  AUD
+  CAD
+  CHF
+  CNY
+  SEK
+  NZD
 }
 
 type Settings_Socials {
@@ -10776,6 +10989,7 @@ type settingsDocAccess {
 type SettingsDocAccessFields {
   productsPage: SettingsDocAccessFields_productsPage
   siteLogo: SettingsDocAccessFields_siteLogo
+  siteCurrency: SettingsDocAccessFields_siteCurrency
   socials: SettingsDocAccessFields_socials
   createAccountBanner: SettingsDocAccessFields_createAccountBanner
   loginBanner: SettingsDocAccessFields_loginBanner
@@ -10827,6 +11041,29 @@ type SettingsDocAccessFields_siteLogo_Update {
 }
 
 type SettingsDocAccessFields_siteLogo_Delete {
+  permission: Boolean!
+}
+
+type SettingsDocAccessFields_siteCurrency {
+  create: SettingsDocAccessFields_siteCurrency_Create
+  read: SettingsDocAccessFields_siteCurrency_Read
+  update: SettingsDocAccessFields_siteCurrency_Update
+  delete: SettingsDocAccessFields_siteCurrency_Delete
+}
+
+type SettingsDocAccessFields_siteCurrency_Create {
+  permission: Boolean!
+}
+
+type SettingsDocAccessFields_siteCurrency_Read {
+  permission: Boolean!
+}
+
+type SettingsDocAccessFields_siteCurrency_Update {
+  permission: Boolean!
+}
+
+type SettingsDocAccessFields_siteCurrency_Delete {
   permission: Boolean!
 }
 
@@ -14021,6 +14258,11 @@ type OrdersFields {
   customerContactNumber: OrdersFields_customerContactNumber
   customerEmail: OrdersFields_customerEmail
   customerAddress: OrdersFields_customerAddress
+  homeAddress: OrdersFields_homeAddress
+  streetNo: OrdersFields_streetNo
+  descrptiveAddress: OrdersFields_descrptiveAddress
+  city: OrdersFields_city
+  postalCode: OrdersFields_postalCode
   total: OrdersFields_total
   items: OrdersFields_items
   updatedAt: OrdersFields_updatedAt
@@ -14139,6 +14381,121 @@ type OrdersFields_customerAddress_Update {
 }
 
 type OrdersFields_customerAddress_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_homeAddress {
+  create: OrdersFields_homeAddress_Create
+  read: OrdersFields_homeAddress_Read
+  update: OrdersFields_homeAddress_Update
+  delete: OrdersFields_homeAddress_Delete
+}
+
+type OrdersFields_homeAddress_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_homeAddress_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_homeAddress_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_homeAddress_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_streetNo {
+  create: OrdersFields_streetNo_Create
+  read: OrdersFields_streetNo_Read
+  update: OrdersFields_streetNo_Update
+  delete: OrdersFields_streetNo_Delete
+}
+
+type OrdersFields_streetNo_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_streetNo_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_streetNo_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_streetNo_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_descrptiveAddress {
+  create: OrdersFields_descrptiveAddress_Create
+  read: OrdersFields_descrptiveAddress_Read
+  update: OrdersFields_descrptiveAddress_Update
+  delete: OrdersFields_descrptiveAddress_Delete
+}
+
+type OrdersFields_descrptiveAddress_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_descrptiveAddress_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_descrptiveAddress_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_descrptiveAddress_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_city {
+  create: OrdersFields_city_Create
+  read: OrdersFields_city_Read
+  update: OrdersFields_city_Update
+  delete: OrdersFields_city_Delete
+}
+
+type OrdersFields_city_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_city_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_city_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_city_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_postalCode {
+  create: OrdersFields_postalCode_Create
+  read: OrdersFields_postalCode_Read
+  update: OrdersFields_postalCode_Update
+  delete: OrdersFields_postalCode_Delete
+}
+
+type OrdersFields_postalCode_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_postalCode_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_postalCode_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_postalCode_Delete {
   permission: Boolean!
 }
 
@@ -16045,6 +16402,7 @@ type settingsAccess {
 type SettingsFields {
   productsPage: SettingsFields_productsPage
   siteLogo: SettingsFields_siteLogo
+  siteCurrency: SettingsFields_siteCurrency
   socials: SettingsFields_socials
   createAccountBanner: SettingsFields_createAccountBanner
   loginBanner: SettingsFields_loginBanner
@@ -16096,6 +16454,29 @@ type SettingsFields_siteLogo_Update {
 }
 
 type SettingsFields_siteLogo_Delete {
+  permission: Boolean!
+}
+
+type SettingsFields_siteCurrency {
+  create: SettingsFields_siteCurrency_Create
+  read: SettingsFields_siteCurrency_Read
+  update: SettingsFields_siteCurrency_Update
+  delete: SettingsFields_siteCurrency_Delete
+}
+
+type SettingsFields_siteCurrency_Create {
+  permission: Boolean!
+}
+
+type SettingsFields_siteCurrency_Read {
+  permission: Boolean!
+}
+
+type SettingsFields_siteCurrency_Update {
+  permission: Boolean!
+}
+
+type SettingsFields_siteCurrency_Delete {
   permission: Boolean!
 }
 
@@ -17729,6 +18110,11 @@ input mutationOrderInput {
   customerContactNumber: Float
   customerEmail: String
   customerAddress: String
+  homeAddress: String
+  streetNo: String
+  descrptiveAddress: String
+  city: String!
+  postalCode: Float!
   stripePaymentIntentID: String
   total: Float!
   items: [mutationOrder_ItemsInput]
@@ -17749,6 +18135,11 @@ input mutationOrderUpdateInput {
   customerContactNumber: Float
   customerEmail: String
   customerAddress: String
+  homeAddress: String
+  streetNo: String
+  descrptiveAddress: String
+  city: String
+  postalCode: Float
   stripePaymentIntentID: String
   total: Float
   items: [mutationOrderUpdate_ItemsInput]
@@ -18012,12 +18403,33 @@ enum PayloadPreferenceUpdate_UserRelationshipInputRelationTo {
 input mutationSettingsInput {
   productsPage: String
   siteLogo: String!
+  siteCurrency: Settings_siteCurrency_MutationInput!
   socials: [mutationSettings_SocialsInput]
   createAccountBanner: String!
   loginBanner: String!
   recoverPasswordBanner: String!
   updatedAt: String
   createdAt: String
+}
+
+enum Settings_siteCurrency_MutationInput {
+  LBP
+  SAR
+  AED
+  BHD
+  KWD
+  OMR
+  JOD
+  USD
+  EUR
+  GBP
+  JPY
+  AUD
+  CAD
+  CHF
+  CNY
+  SEK
+  NZD
 }
 
 input mutationSettings_SocialsInput {

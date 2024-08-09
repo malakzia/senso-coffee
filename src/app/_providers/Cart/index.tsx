@@ -10,9 +10,10 @@ import React, {
   useState,
 } from 'react'
 
-import { Product, User } from '../../../payload/payload-types'
+import { Product, Settings, User } from '../../../payload/payload-types'
 import { useAuth } from '../Auth'
 import { CartItem, cartReducer } from './reducer'
+import { fetchSettings } from '../../_api/fetchGlobals'
 
 export type CartContext = {
   cart: User['cart']
@@ -233,10 +234,19 @@ export const CartProvider = props => {
     })
   }, [])
 
-  // calculate the new cart total whenever the cart changes
-  useEffect(() => {
-    if (!hasInitialized) return
-  
+// calculate the new cart total whenever the cart changes
+useEffect(() => {
+  if (!hasInitialized) return
+
+  const updateCartTotal = async () => {
+    let siteCurrency = 'LBP';
+    try {
+      const settings = await fetchSettings();
+      siteCurrency = settings?.siteCurrency || 'LBP';
+    } catch (error) {
+      console.error('Failed to fetch site settings:', error);
+    }
+
     const newTotal = 
       cart?.items?.reduce((acc, item) => {
         return (
@@ -247,15 +257,19 @@ export const CartProvider = props => {
             : 0)
         )
       }, 0) || 0
-  
+
+    // Update the state with the formatted total
     setTotal({
       formatted: newTotal.toLocaleString('en-US', {
-        style: 'decimal',
-        currency: 'LBP',
+        style: 'currency',
+        currency: siteCurrency,
       }),
       raw: newTotal,
     })
-  }, [cart, hasInitialized])
+  }
+
+  updateCartTotal()
+}, [cart, hasInitialized])
 
   return (
     <Context.Provider

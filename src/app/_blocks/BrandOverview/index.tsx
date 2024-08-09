@@ -1,14 +1,14 @@
-import React from 'react';
-import { Page } from '../../../payload/payload-types';
-import RichText from '../../_components/RichText';
-import Image from 'next/image';
-import classes from './index.module.scss';
+import React from 'react'
+import { Page } from '../../../payload/payload-types'
+import RichText from '../../_components/RichText'
+import Image from 'next/image'
+import classes from './index.module.scss'
 
-type Props = Extract<Page['layout'][0], { blockType: 'brandOverview' }>;
+type Props = Extract<Page['layout'][0], { blockType: 'brandOverview' }>
 
 const BrandOverview: React.FC<Props & { id?: string }> = ({ richText, media, brandTimeLine }) => {
-  const fileName = media && typeof media !== 'string' && media?.filename;
-  const altText = media && typeof media !== 'string' && media?.alt;
+  const fileName = media && typeof media !== 'string' && media?.filename
+  const altText = media && typeof media !== 'string' && media?.alt
 
   return (
     <section className="bg-brand-light-brown">
@@ -31,9 +31,11 @@ const BrandOverview: React.FC<Props & { id?: string }> = ({ richText, media, bra
           src={`${process.env.NEXT_PUBLIC_SERVER_URL}/media/${fileName}`}
         />
         <div className="flex flex-col pt-[80px] w-full overflow-hidden">
-          <div className={`${classes.animateMarquee} flex flex-row w-full whitespace-nowrap gap-[80px]`}>
+          <div
+            className={`${classes.animateMarquee} flex flex-row w-full whitespace-nowrap gap-[80px]`}
+          >
             {[...brandTimeLine, ...brandTimeLine].map((item, index) => {
-              if (index % 2 !== 0) return null;
+              if (index % 2 !== 0) return null
               return (
                 <div className="flex flex-row mr-4" key={index}>
                   <div className="flex flex-col justify-center items-center">
@@ -56,13 +58,15 @@ const BrandOverview: React.FC<Props & { id?: string }> = ({ richText, media, bra
                     </p>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
           <div className="w-full h-[1px] bg-[#B9B6AF]"></div>
-          <div className={`${classes.animateMarquee} flex flex-row w-full whitespace-nowrap gap-[80px]`}>
+          <div
+            className={`${classes.animateMarquee} flex flex-row w-full whitespace-nowrap gap-[80px]`}
+          >
             {[...brandTimeLine, ...brandTimeLine].map((item, index) => {
-              if (index % 2 === 0) return null;
+              if (index % 2 === 0) return null
               return (
                 <div className="flex flex-row mr-4" key={index}>
                   <div className="mt-4 py-4 px-1 flex justify-center items-center rounded-2xl bg-[#FBF9F4] max-w-[324px] min-w-[320px] w-full h-full min-h-[110px] max-h-[110px]">
@@ -85,13 +89,13 @@ const BrandOverview: React.FC<Props & { id?: string }> = ({ richText, media, bra
                     </div>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default BrandOverview;
+export default BrandOverview

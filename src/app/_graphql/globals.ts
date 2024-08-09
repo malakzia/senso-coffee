@@ -54,6 +54,7 @@ export const SETTINGS = `
       height
       url
     }
+    siteCurrency
     socials {
       link ${LINK_FIELDS({ disableAppearance: true })}
     }

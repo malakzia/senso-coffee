@@ -70,7 +70,7 @@ export const InstaFeedBlock: React.FC<Props> = ({ heading, subHeading }) => {
     <>
       {error && <p className="text-red-500 hidden">{error}</p>}
 
-      <section id="instagram-feeds" className="bg-brand-light-bg">
+      <section id="instagram-feeds" className="bg-brand-light-bg hidden">
         <div className="container mx-auto py-8 px-4 flex-col flex lg:py-16 lg:px-8 items-center">
           <h4 className="text-h4 font-normal text-brand-dark tracking-tight">{heading || ''}</h4>
           <p className="text-b16 font-normal text-brand-dark mt-3">{subHeading || ''}</p>

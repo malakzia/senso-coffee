@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useCallback } from 'react'
-import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { Order } from '../../../../payload/payload-types'
@@ -9,7 +8,7 @@ import { Button } from '../../../_components/Button'
 import { Message } from '../../../_components/Message'
 import { priceFromJSON } from '../../../_components/Price'
 import { useCart } from '../../../_providers/Cart'
-
+import { useCurrency } from '../../../_providers/CurrencyContext'
 import classes from './index.module.scss'
 import { Input } from '../../../_components/Input'
 
@@ -18,11 +17,14 @@ type FormData = {
   customerContactNumber: string
   customerEmail: string
   customerAddress: string
+  homeAddress: string
+  streetNo: string
+  descriptiveAddress: string
+  city: string
+  postalCode: string
 }
 
 export const CheckoutForm: React.FC<{}> = () => {
-  // const stripe = useStripe()
-  // const elements = useElements()
   const [error, setError] = React.useState<string | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const router = useRouter()
@@ -32,80 +34,56 @@ export const CheckoutForm: React.FC<{}> = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<FormData>()
 
   const onSubmit = useCallback(
     async (data: FormData) => {
-      // e.preventDefault()
       setIsLoading(true)
 
       try {
-        // const { error: stripeError, paymentIntent } = await stripe?.confirmPayment({
-        //   elements: elements!,
-        //   redirect: 'if_required',
-        //   confirmParams: {
-        //     return_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/order-confirmation`,
-        //   },
-        // })
+        const { currency } = useCurrency()
+        const orderReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            total: cartTotal.raw,
+            stripePaymentIntentID: null,
+            items: (cart?.items || [])?.map(({ product, quantity }) => ({
+              product: typeof product === 'string' ? product : product.id,
+              quantity,
+              price:
+                typeof product === 'object'
+                  ? priceFromJSON(product.priceJSON, 1, currency)
+                  : undefined,
+            })),
+            customerName: data.customerName,
+            customerContactNumber: data.customerContactNumber,
+            customerEmail: data.customerEmail,
+            customerAddress: data.customerAddress,
+            homeAddress: data.homeAddress,
+            streetNo: data.streetNo,
+            descriptiveAddress: data.descriptiveAddress,
+            city: data.city,
+            postalCode: data.postalCode,
+          }),
+        })
 
-        // if (stripeError) {
-        //   setError(stripeError.message)
-        //   setIsLoading(false)
-        // }
+        if (!orderReq.ok) throw new Error(orderReq.statusText || 'Something went wrong.')
 
-        // if (paymentIntent) {
-        // Before redirecting to the order confirmation page, we need to create the order in Payload
-        // Cannot clear the cart yet because if you clear the cart while in the checkout
-        // you will be redirected to the `/cart` page before this redirect happens
-        // Instead, we clear the cart in an `afterChange` hook on the `orders` collection in Payload
-        try {
-          const orderReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {
-            method: 'POST',
-    
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            // paymentIntent.id
-            body: JSON.stringify({
-              total: cartTotal.raw,
-              stripePaymentIntentID: null,
-              items: (cart?.items || [])?.map(({ product, quantity }) => ({
-                product: typeof product === 'string' ? product : product.id,
-                quantity,
-                price:
-                  typeof product === 'object'
-                    ? priceFromJSON(product.priceJSON, 1, true)
-                    : undefined,
-              })),
-              customerName: data.customerName,
-              customerContactNumber: data.customerContactNumber,
-              customerEmail: data.customerEmail,
-              customerAddress: data.customerAddress,
-            }),
-          })
+        const {
+          error: errorFromRes,
+          doc,
+        }: {
+          message?: string
+          error?: string
+          doc: Order
+        } = await orderReq.json()
 
-          if (!orderReq.ok) throw new Error(orderReq.statusText || 'Something went wrong.')
+        if (errorFromRes) throw new Error(errorFromRes)
 
-          const {
-            error: errorFromRes,
-            doc,
-          }: {
-            message?: string
-            error?: string
-            doc: Order
-          } = await orderReq.json()
-
-          if (errorFromRes) throw new Error(errorFromRes)
-
-          router.push(`/order-confirmation?order_id=${doc.id}`)
-        } catch (err) {
-          // don't throw an error if the order was not created successfully
-          // this is because payment _did_ in fact go through, and we don't want the user to pay twice
-          console.error(err.message) // eslint-disable-line no-console
-          router.push(`/order-confirmation?error=${encodeURIComponent(err.message)}`)
-        }
-        // }
+        router.push(`/order-confirmation?order_id=${doc.id}`)
       } catch (err) {
         const msg = err instanceof Error ? err.message : 'Something went wrong.'
         setError(`Error while submitting payment: ${msg}`)
@@ -113,14 +91,13 @@ export const CheckoutForm: React.FC<{}> = () => {
       }
     },
     [router, cart, cartTotal],
-    // stripe, elements,
   )
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       {error && <Message error={error} />}
-      {/* <PaymentElement /> */}
-      <div className="flex flex-col lg:flex-row gap-6 w-full">
+
+      <div className="flex flex-col lg:flex-row gap-6 w-full max-w-[780px]">
         <Input
           name="customerName"
           label="Full Name*"
@@ -140,7 +117,8 @@ export const CheckoutForm: React.FC<{}> = () => {
           type="tel"
         />
       </div>
-      <div className="flex flex-col lg:flex-row gap-6 w-full">
+
+      <div className="flex flex-col lg:flex-row gap-6 w-full max-w-[780px]">
         <Input
           name="customerEmail"
           label="Email Address*"
@@ -152,11 +130,58 @@ export const CheckoutForm: React.FC<{}> = () => {
         />
         <Input
           name="customerAddress"
-          label="Full Address"
+          label="Full Address*"
           required
           disabled={isLoading}
           register={register}
           error={errors.customerAddress}
+          type="text"
+        />
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-6 w-full max-w-[780px]">
+        <Input
+          name="homeAddress"
+          label="Home Address (optional)"
+          disabled={isLoading}
+          register={register}
+          error={errors.homeAddress}
+          type="text"
+        />
+        <Input
+          name="postalCode"
+          label="Postal Code*"
+          required
+          disabled={isLoading}
+          register={register}
+          error={errors.postalCode}
+          type="text"
+        />
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-6 w-full max-w-[780px]">
+        <Input
+          name="descriptiveAddress"
+          label="Apartment, suite, etc. (optional)"
+          disabled={isLoading}
+          register={register}
+          error={errors.descriptiveAddress}
+          type="text"
+        />
+        <Input
+          name="streetNo"
+          label="Street Number"
+          disabled={isLoading}
+          register={register}
+          error={errors.streetNo}
+          type="text"
+        />
+        <Input
+          name="city"
+          label="City"
+          disabled={isLoading}
+          register={register}
+          error={errors.city}
           type="text"
         />
       </div>

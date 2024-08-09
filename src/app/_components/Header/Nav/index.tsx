@@ -36,22 +36,23 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
               className={[
                 classes.subMenu,
                 activeIndex === i ? classes.active : '',
-                'lg:max-w-[1080px] duration-200 bg-brand-primary rounded-lg backdrop-blur-xl',
+                'lg:max-w-[1080px] duration-500 bg-white rounded-lg backdrop-blur-xl',
               ]
                 .filter(Boolean)
                 .join(' ')}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {subMenuItems?.map((menuItem, j) => (
-                  <div key={j} className="p-4 flex flex-col text-center">
-                    <span className="text-lg font-medium text-white">{menuItem.menuHeading}</span>
+                  <div key={j} className="p-4 flex flex-col text-start">
+                    <span className="text-lg font-medium text-brand-dark">
+                      {menuItem.menuHeading}
+                    </span>
                     <div className="mt-2 flex flex-col">
                       {menuItem.subMenuLinks?.map((subItem, k) => (
                         <CMSLink
-                          className="hover:text-brand-dark p-2 hover:bg-brand-primary duration-150 ease-in-out"
+                          className="text-brand-black hover:text-brand-orange px-2 py-[2px] duration-300 ease-in-out no-underline drop-shadow-none shadow-none"
                           key={k}
                           {...subItem.link}
-                          appearance="none"
                         />
                       ))}
                     </div>

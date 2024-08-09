@@ -22,7 +22,8 @@ export const Orders: CollectionConfig = {
   access: {
     read: adminsOrOrderedBy,
     update: admins,
-    create: adminsOrLoggedIn,
+    create: () => true,
+    // create: adminsOrLoggedIn,
     delete: admins,
   },
   fields: [
@@ -53,6 +54,33 @@ export const Orders: CollectionConfig = {
       name: 'customerAddress',
       type: 'text',
       label: 'Customer Address',
+    },
+    {
+      name: 'homeAddress',
+      type: 'text',
+      label: 'Home Address (optional)',
+    },
+    {
+      name: 'streetNo',
+      type: 'text',
+      label: 'Street No',
+    },
+    {
+      name: 'descrptiveAddress',
+      type: 'text',
+      label: 'Apartment, suite, etc. (optional)',
+    },
+    {
+      name: 'city',
+      type: 'text',
+      label: 'City',
+      required: true,
+    },
+    {
+      name: 'postalCode',
+      type: 'number',
+      label: 'Postal Code',
+      required: true,
     },
     {
       name: 'stripePaymentIntentID',

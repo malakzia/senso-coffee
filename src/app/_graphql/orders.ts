@@ -25,6 +25,11 @@ export const ORDER = `
         customerContactNumber
         customerEmail
         customerAddress
+        homeAddress
+        streetNo
+        descrptiveAddress
+        city
+        postalCode
       }
     }
   }

@@ -1,5 +1,6 @@
 import type { AfterChangeHook } from 'payload/dist/collections/config/types'
 import type { Order } from '../../../payload-types'
+import { docHasTimestamps } from 'payload/types'
 
 export const sendEmail: AfterChangeHook<Order> = async ({ doc, req, operation }) => {
   const { id, customerEmail, customerName, items, total } = doc

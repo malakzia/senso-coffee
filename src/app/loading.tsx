@@ -11,7 +11,6 @@ const Loading = () => {
         <span className={classes.loadingTextWords}>I</span>
         <span className={classes.loadingTextWords}>N</span>
         <span className={classes.loadingTextWords}>G</span>
-        
       </div>
     </div>
   )
