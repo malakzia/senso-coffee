@@ -29,6 +29,7 @@ export const CheckoutForm: React.FC<{}> = () => {
   const [isLoading, setIsLoading] = React.useState(false)
   const router = useRouter()
   const { cart, cartTotal } = useCart()
+  const { currency } = useCurrency()  // Call hook here
 
   const {
     register,
@@ -41,7 +42,6 @@ export const CheckoutForm: React.FC<{}> = () => {
       setIsLoading(true)
 
       try {
-        const { currency } = useCurrency()
         const orderReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {
           method: 'POST',
           headers: {
@@ -90,7 +90,7 @@ export const CheckoutForm: React.FC<{}> = () => {
         setIsLoading(false)
       }
     },
-    [router, cart, cartTotal],
+    [router, cart, cartTotal, currency],  // Add currency to dependency array
   )
 
   return (

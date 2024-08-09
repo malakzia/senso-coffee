@@ -14,8 +14,7 @@ export const priceFromJSON = (priceJSON: string, quantity: number = 1, currency:
     try {
       const parsedPrice = parseFloat(priceJSON) * quantity
       price = parsedPrice.toLocaleString('en-US', {
-        style: 'currency',
-        currency: currency,
+        style: 'decimal',
       })
     } catch (e) {
       console.error('Cannot parse priceJSON')
@@ -56,9 +55,9 @@ export const Price: React.FC<{
     <div className={classes.actions}>
       {price?.actualPrice && price?.withQuantity && (
         <div className={classes.price}>
-          <p className="text-b16 text-brand-dark leading-headingLH2">{price?.withQuantity}</p>
+          <p className="text-b16 text-brand-dark leading-headingLH2">{price?.withQuantity} {currency}</p>
           {quantity && quantity > 1 && (
-            <small className="text-b16 text-brand-dark leading-headingLH2">{`${price.actualPrice} x ${quantity}`}</small>
+            <small className="text-b16 text-brand-dark leading-headingLH2">{`${price.actualPrice} x ${quantity} ${currency}`}</small>
           )}
         </div>
       )}
