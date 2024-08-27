@@ -57,13 +57,45 @@ export const hero: Field = {
       },
     }),
     {
+      name: 'bannerOption',
+      type: 'select',
+      label: 'Banner Options',
+      defaultValue: 'singlePicture',
+      options: [
+        {
+          label: 'Single Picture',
+          value: 'singlePicture',
+        },
+        {
+          label: 'Multiple Pictures',
+          value: 'multiplePictures',
+        }
+      ]
+    },
+    {
       name: 'media',
       type: 'upload',
       relationTo: 'media',
       required: true,
-      // admin: {
-      //   condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
-      // },
+      admin: {
+        condition: (_, { bannerOption } = {}) => ['singlePicture'].includes(bannerOption),
+      },
     },
+    {
+      name: 'heroBanners',
+      type: 'array',
+      label: 'Hero Banners',
+      admin: {
+        condition: (_, { bannerOption } = {}) => ['multiplePictures'].includes(bannerOption),
+      },
+      fields: [
+        {
+          name:'media',
+          type: 'upload',
+          relationTo:'media',
+          required: true,
+        }
+      ]
+    }
   ],
 }

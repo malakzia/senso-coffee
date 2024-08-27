@@ -73,7 +73,14 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
-    media: string | Media;
+    bannerOption?: ('singlePicture' | 'multiplePictures') | null;
+    media?: string | Media | null;
+    heroBanners?:
+      | {
+          media?: string | Media | null;
+          id?: string | null;
+        }[]
+      | null;
   };
   layout: (
     | {

@@ -71,7 +71,9 @@ type Page_Hero {
   subHeading: String
   richText(depth: Int): JSON
   links: [Page_Hero_Links!]
+  bannerOption: Page_Hero_bannerOption
   media(where: Page_Hero_Media_where): Media
+  heroBanners: [Page_Hero_HeroBanners!]
 }
 
 enum Page_Hero_type {
@@ -299,6 +301,11 @@ enum Page_Hero_Links_Link_appearance {
   secondary
 }
 
+enum Page_Hero_bannerOption {
+  singlePicture
+  multiplePictures
+}
+
 input Page_Hero_Media_where {
   alt: Page_Hero_Media_alt_operator
   caption: Page_Hero_Media_caption_operator
@@ -459,6 +466,173 @@ input Page_Hero_Media_where_or {
   id: Page_Hero_Media_id_operator
   AND: [Page_Hero_Media_where_and]
   OR: [Page_Hero_Media_where_or]
+}
+
+type Page_Hero_HeroBanners {
+  media(where: Page_Hero_HeroBanners_Media_where): Media
+  id: String
+}
+
+input Page_Hero_HeroBanners_Media_where {
+  alt: Page_Hero_HeroBanners_Media_alt_operator
+  caption: Page_Hero_HeroBanners_Media_caption_operator
+  updatedAt: Page_Hero_HeroBanners_Media_updatedAt_operator
+  createdAt: Page_Hero_HeroBanners_Media_createdAt_operator
+  url: Page_Hero_HeroBanners_Media_url_operator
+  filename: Page_Hero_HeroBanners_Media_filename_operator
+  mimeType: Page_Hero_HeroBanners_Media_mimeType_operator
+  filesize: Page_Hero_HeroBanners_Media_filesize_operator
+  width: Page_Hero_HeroBanners_Media_width_operator
+  height: Page_Hero_HeroBanners_Media_height_operator
+  id: Page_Hero_HeroBanners_Media_id_operator
+  AND: [Page_Hero_HeroBanners_Media_where_and]
+  OR: [Page_Hero_HeroBanners_Media_where_or]
+}
+
+input Page_Hero_HeroBanners_Media_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Page_Hero_HeroBanners_Media_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Page_Hero_HeroBanners_Media_where_and {
+  alt: Page_Hero_HeroBanners_Media_alt_operator
+  caption: Page_Hero_HeroBanners_Media_caption_operator
+  updatedAt: Page_Hero_HeroBanners_Media_updatedAt_operator
+  createdAt: Page_Hero_HeroBanners_Media_createdAt_operator
+  url: Page_Hero_HeroBanners_Media_url_operator
+  filename: Page_Hero_HeroBanners_Media_filename_operator
+  mimeType: Page_Hero_HeroBanners_Media_mimeType_operator
+  filesize: Page_Hero_HeroBanners_Media_filesize_operator
+  width: Page_Hero_HeroBanners_Media_width_operator
+  height: Page_Hero_HeroBanners_Media_height_operator
+  id: Page_Hero_HeroBanners_Media_id_operator
+  AND: [Page_Hero_HeroBanners_Media_where_and]
+  OR: [Page_Hero_HeroBanners_Media_where_or]
+}
+
+input Page_Hero_HeroBanners_Media_where_or {
+  alt: Page_Hero_HeroBanners_Media_alt_operator
+  caption: Page_Hero_HeroBanners_Media_caption_operator
+  updatedAt: Page_Hero_HeroBanners_Media_updatedAt_operator
+  createdAt: Page_Hero_HeroBanners_Media_createdAt_operator
+  url: Page_Hero_HeroBanners_Media_url_operator
+  filename: Page_Hero_HeroBanners_Media_filename_operator
+  mimeType: Page_Hero_HeroBanners_Media_mimeType_operator
+  filesize: Page_Hero_HeroBanners_Media_filesize_operator
+  width: Page_Hero_HeroBanners_Media_width_operator
+  height: Page_Hero_HeroBanners_Media_height_operator
+  id: Page_Hero_HeroBanners_Media_id_operator
+  AND: [Page_Hero_HeroBanners_Media_where_and]
+  OR: [Page_Hero_HeroBanners_Media_where_or]
 }
 
 union Page_Layout = Cta | Content | MediaBlock | Archive | NewsLetterBlock | AboutBlock | ReviewsBlock | TextWithImageBlock | OurBrandsBlock | RichTextBlock | BrandProcessBlock | DistributorsCarousel | BrandOverview | ContactformBlock | InstaFeedBlock
@@ -3028,7 +3202,10 @@ input Page_where {
   hero__links__link__label: Page_hero__links__link__label_operator
   hero__links__link__appearance: Page_hero__links__link__appearance_operator
   hero__links__id: Page_hero__links__id_operator
+  hero__bannerOption: Page_hero__bannerOption_operator
   hero__media: Page_hero__media_operator
+  hero__heroBanners__media: Page_hero__heroBanners__media_operator
+  hero__heroBanners__id: Page_hero__heroBanners__id_operator
   slug: Page_slug_operator
   meta__title: Page_meta__title_operator
   meta__description: Page_meta__description_operator
@@ -3187,9 +3364,39 @@ input Page_hero__links__id_operator {
   exists: Boolean
 }
 
+input Page_hero__bannerOption_operator {
+  equals: Page_hero__bannerOption_Input
+  not_equals: Page_hero__bannerOption_Input
+  in: [Page_hero__bannerOption_Input]
+  not_in: [Page_hero__bannerOption_Input]
+  all: [Page_hero__bannerOption_Input]
+  exists: Boolean
+}
+
+enum Page_hero__bannerOption_Input {
+  singlePicture
+  multiplePictures
+}
+
 input Page_hero__media_operator {
   equals: String
   not_equals: String
+}
+
+input Page_hero__heroBanners__media_operator {
+  equals: String
+  not_equals: String
+}
+
+input Page_hero__heroBanners__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Page_slug_operator {
@@ -3290,7 +3497,10 @@ input Page_where_and {
   hero__links__link__label: Page_hero__links__link__label_operator
   hero__links__link__appearance: Page_hero__links__link__appearance_operator
   hero__links__id: Page_hero__links__id_operator
+  hero__bannerOption: Page_hero__bannerOption_operator
   hero__media: Page_hero__media_operator
+  hero__heroBanners__media: Page_hero__heroBanners__media_operator
+  hero__heroBanners__id: Page_hero__heroBanners__id_operator
   slug: Page_slug_operator
   meta__title: Page_meta__title_operator
   meta__description: Page_meta__description_operator
@@ -3318,7 +3528,10 @@ input Page_where_or {
   hero__links__link__label: Page_hero__links__link__label_operator
   hero__links__link__appearance: Page_hero__links__link__appearance_operator
   hero__links__id: Page_hero__links__id_operator
+  hero__bannerOption: Page_hero__bannerOption_operator
   hero__media: Page_hero__media_operator
+  hero__heroBanners__media: Page_hero__heroBanners__media_operator
+  hero__heroBanners__id: Page_hero__heroBanners__id_operator
   slug: Page_slug_operator
   meta__title: Page_meta__title_operator
   meta__description: Page_meta__description_operator
@@ -3427,7 +3640,9 @@ type PagesDocAccessFields_hero_Fields {
   heading: PagesDocAccessFields_hero_heading
   subHeading: PagesDocAccessFields_hero_subHeading
   links: PagesDocAccessFields_hero_links
+  bannerOption: PagesDocAccessFields_hero_bannerOption
   media: PagesDocAccessFields_hero_media
+  heroBanners: PagesDocAccessFields_hero_heroBanners
 }
 
 type PagesDocAccessFields_hero_type {
@@ -3746,6 +3961,29 @@ type PagesDocAccessFields_hero_links_id_Delete {
   permission: Boolean!
 }
 
+type PagesDocAccessFields_hero_bannerOption {
+  create: PagesDocAccessFields_hero_bannerOption_Create
+  read: PagesDocAccessFields_hero_bannerOption_Read
+  update: PagesDocAccessFields_hero_bannerOption_Update
+  delete: PagesDocAccessFields_hero_bannerOption_Delete
+}
+
+type PagesDocAccessFields_hero_bannerOption_Create {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_bannerOption_Read {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_bannerOption_Update {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_bannerOption_Delete {
+  permission: Boolean!
+}
+
 type PagesDocAccessFields_hero_media {
   create: PagesDocAccessFields_hero_media_Create
   read: PagesDocAccessFields_hero_media_Read
@@ -3766,6 +4004,81 @@ type PagesDocAccessFields_hero_media_Update {
 }
 
 type PagesDocAccessFields_hero_media_Delete {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners {
+  create: PagesDocAccessFields_hero_heroBanners_Create
+  read: PagesDocAccessFields_hero_heroBanners_Read
+  update: PagesDocAccessFields_hero_heroBanners_Update
+  delete: PagesDocAccessFields_hero_heroBanners_Delete
+  fields: PagesDocAccessFields_hero_heroBanners_Fields
+}
+
+type PagesDocAccessFields_hero_heroBanners_Create {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_Read {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_Update {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_Delete {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_Fields {
+  media: PagesDocAccessFields_hero_heroBanners_media
+  id: PagesDocAccessFields_hero_heroBanners_id
+}
+
+type PagesDocAccessFields_hero_heroBanners_media {
+  create: PagesDocAccessFields_hero_heroBanners_media_Create
+  read: PagesDocAccessFields_hero_heroBanners_media_Read
+  update: PagesDocAccessFields_hero_heroBanners_media_Update
+  delete: PagesDocAccessFields_hero_heroBanners_media_Delete
+}
+
+type PagesDocAccessFields_hero_heroBanners_media_Create {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_media_Read {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_media_Update {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_media_Delete {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_id {
+  create: PagesDocAccessFields_hero_heroBanners_id_Create
+  read: PagesDocAccessFields_hero_heroBanners_id_Read
+  update: PagesDocAccessFields_hero_heroBanners_id_Update
+  delete: PagesDocAccessFields_hero_heroBanners_id_Delete
+}
+
+type PagesDocAccessFields_hero_heroBanners_id_Create {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_id_Read {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_id_Update {
+  permission: Boolean!
+}
+
+type PagesDocAccessFields_hero_heroBanners_id_Delete {
   permission: Boolean!
 }
 
@@ -4040,7 +4353,9 @@ type PageVersion_Version_Hero {
   subHeading: String
   richText(depth: Int): JSON
   links: [PageVersion_Version_Hero_Links!]
+  bannerOption: PageVersion_Version_Hero_bannerOption
   media(where: PageVersion_Version_Hero_Media_where): Media
+  heroBanners: [PageVersion_Version_Hero_HeroBanners!]
 }
 
 enum PageVersion_Version_Hero_type {
@@ -4249,6 +4564,11 @@ enum PageVersion_Version_Hero_Links_Link_appearance {
   secondary
 }
 
+enum PageVersion_Version_Hero_bannerOption {
+  singlePicture
+  multiplePictures
+}
+
 input PageVersion_Version_Hero_Media_where {
   alt: PageVersion_Version_Hero_Media_alt_operator
   caption: PageVersion_Version_Hero_Media_caption_operator
@@ -4409,6 +4729,173 @@ input PageVersion_Version_Hero_Media_where_or {
   id: PageVersion_Version_Hero_Media_id_operator
   AND: [PageVersion_Version_Hero_Media_where_and]
   OR: [PageVersion_Version_Hero_Media_where_or]
+}
+
+type PageVersion_Version_Hero_HeroBanners {
+  media(where: PageVersion_Version_Hero_HeroBanners_Media_where): Media
+  id: String
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_where {
+  alt: PageVersion_Version_Hero_HeroBanners_Media_alt_operator
+  caption: PageVersion_Version_Hero_HeroBanners_Media_caption_operator
+  updatedAt: PageVersion_Version_Hero_HeroBanners_Media_updatedAt_operator
+  createdAt: PageVersion_Version_Hero_HeroBanners_Media_createdAt_operator
+  url: PageVersion_Version_Hero_HeroBanners_Media_url_operator
+  filename: PageVersion_Version_Hero_HeroBanners_Media_filename_operator
+  mimeType: PageVersion_Version_Hero_HeroBanners_Media_mimeType_operator
+  filesize: PageVersion_Version_Hero_HeroBanners_Media_filesize_operator
+  width: PageVersion_Version_Hero_HeroBanners_Media_width_operator
+  height: PageVersion_Version_Hero_HeroBanners_Media_height_operator
+  id: PageVersion_Version_Hero_HeroBanners_Media_id_operator
+  AND: [PageVersion_Version_Hero_HeroBanners_Media_where_and]
+  OR: [PageVersion_Version_Hero_HeroBanners_Media_where_or]
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_where_and {
+  alt: PageVersion_Version_Hero_HeroBanners_Media_alt_operator
+  caption: PageVersion_Version_Hero_HeroBanners_Media_caption_operator
+  updatedAt: PageVersion_Version_Hero_HeroBanners_Media_updatedAt_operator
+  createdAt: PageVersion_Version_Hero_HeroBanners_Media_createdAt_operator
+  url: PageVersion_Version_Hero_HeroBanners_Media_url_operator
+  filename: PageVersion_Version_Hero_HeroBanners_Media_filename_operator
+  mimeType: PageVersion_Version_Hero_HeroBanners_Media_mimeType_operator
+  filesize: PageVersion_Version_Hero_HeroBanners_Media_filesize_operator
+  width: PageVersion_Version_Hero_HeroBanners_Media_width_operator
+  height: PageVersion_Version_Hero_HeroBanners_Media_height_operator
+  id: PageVersion_Version_Hero_HeroBanners_Media_id_operator
+  AND: [PageVersion_Version_Hero_HeroBanners_Media_where_and]
+  OR: [PageVersion_Version_Hero_HeroBanners_Media_where_or]
+}
+
+input PageVersion_Version_Hero_HeroBanners_Media_where_or {
+  alt: PageVersion_Version_Hero_HeroBanners_Media_alt_operator
+  caption: PageVersion_Version_Hero_HeroBanners_Media_caption_operator
+  updatedAt: PageVersion_Version_Hero_HeroBanners_Media_updatedAt_operator
+  createdAt: PageVersion_Version_Hero_HeroBanners_Media_createdAt_operator
+  url: PageVersion_Version_Hero_HeroBanners_Media_url_operator
+  filename: PageVersion_Version_Hero_HeroBanners_Media_filename_operator
+  mimeType: PageVersion_Version_Hero_HeroBanners_Media_mimeType_operator
+  filesize: PageVersion_Version_Hero_HeroBanners_Media_filesize_operator
+  width: PageVersion_Version_Hero_HeroBanners_Media_width_operator
+  height: PageVersion_Version_Hero_HeroBanners_Media_height_operator
+  id: PageVersion_Version_Hero_HeroBanners_Media_id_operator
+  AND: [PageVersion_Version_Hero_HeroBanners_Media_where_and]
+  OR: [PageVersion_Version_Hero_HeroBanners_Media_where_or]
 }
 
 union PageVersion_Version_Layout = Cta | Content | MediaBlock | Archive | NewsLetterBlock | AboutBlock | ReviewsBlock | TextWithImageBlock | OurBrandsBlock | RichTextBlock | BrandProcessBlock | DistributorsCarousel | BrandOverview | ContactformBlock | InstaFeedBlock
@@ -4616,7 +5103,10 @@ input versionsPage_where {
   version__hero__links__link__label: versionsPage_version__hero__links__link__label_operator
   version__hero__links__link__appearance: versionsPage_version__hero__links__link__appearance_operator
   version__hero__links__id: versionsPage_version__hero__links__id_operator
+  version__hero__bannerOption: versionsPage_version__hero__bannerOption_operator
   version__hero__media: versionsPage_version__hero__media_operator
+  version__hero__heroBanners__media: versionsPage_version__hero__heroBanners__media_operator
+  version__hero__heroBanners__id: versionsPage_version__hero__heroBanners__id_operator
   version__slug: versionsPage_version__slug_operator
   version__meta__title: versionsPage_version__meta__title_operator
   version__meta__description: versionsPage_version__meta__description_operator
@@ -4787,9 +5277,39 @@ input versionsPage_version__hero__links__id_operator {
   exists: Boolean
 }
 
+input versionsPage_version__hero__bannerOption_operator {
+  equals: versionsPage_version__hero__bannerOption_Input
+  not_equals: versionsPage_version__hero__bannerOption_Input
+  in: [versionsPage_version__hero__bannerOption_Input]
+  not_in: [versionsPage_version__hero__bannerOption_Input]
+  all: [versionsPage_version__hero__bannerOption_Input]
+  exists: Boolean
+}
+
+enum versionsPage_version__hero__bannerOption_Input {
+  singlePicture
+  multiplePictures
+}
+
 input versionsPage_version__hero__media_operator {
   equals: String
   not_equals: String
+}
+
+input versionsPage_version__hero__heroBanners__media_operator {
+  equals: String
+  not_equals: String
+}
+
+input versionsPage_version__hero__heroBanners__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input versionsPage_version__slug_operator {
@@ -4919,7 +5439,10 @@ input versionsPage_where_and {
   version__hero__links__link__label: versionsPage_version__hero__links__link__label_operator
   version__hero__links__link__appearance: versionsPage_version__hero__links__link__appearance_operator
   version__hero__links__id: versionsPage_version__hero__links__id_operator
+  version__hero__bannerOption: versionsPage_version__hero__bannerOption_operator
   version__hero__media: versionsPage_version__hero__media_operator
+  version__hero__heroBanners__media: versionsPage_version__hero__heroBanners__media_operator
+  version__hero__heroBanners__id: versionsPage_version__hero__heroBanners__id_operator
   version__slug: versionsPage_version__slug_operator
   version__meta__title: versionsPage_version__meta__title_operator
   version__meta__description: versionsPage_version__meta__description_operator
@@ -4951,7 +5474,10 @@ input versionsPage_where_or {
   version__hero__links__link__label: versionsPage_version__hero__links__link__label_operator
   version__hero__links__link__appearance: versionsPage_version__hero__links__link__appearance_operator
   version__hero__links__id: versionsPage_version__hero__links__id_operator
+  version__hero__bannerOption: versionsPage_version__hero__bannerOption_operator
   version__hero__media: versionsPage_version__hero__media_operator
+  version__hero__heroBanners__media: versionsPage_version__hero__heroBanners__media_operator
+  version__hero__heroBanners__id: versionsPage_version__hero__heroBanners__id_operator
   version__slug: versionsPage_version__slug_operator
   version__meta__title: versionsPage_version__meta__title_operator
   version__meta__description: versionsPage_version__meta__description_operator
@@ -13138,7 +13664,9 @@ type PagesFields_hero_Fields {
   heading: PagesFields_hero_heading
   subHeading: PagesFields_hero_subHeading
   links: PagesFields_hero_links
+  bannerOption: PagesFields_hero_bannerOption
   media: PagesFields_hero_media
+  heroBanners: PagesFields_hero_heroBanners
 }
 
 type PagesFields_hero_type {
@@ -13457,6 +13985,29 @@ type PagesFields_hero_links_id_Delete {
   permission: Boolean!
 }
 
+type PagesFields_hero_bannerOption {
+  create: PagesFields_hero_bannerOption_Create
+  read: PagesFields_hero_bannerOption_Read
+  update: PagesFields_hero_bannerOption_Update
+  delete: PagesFields_hero_bannerOption_Delete
+}
+
+type PagesFields_hero_bannerOption_Create {
+  permission: Boolean!
+}
+
+type PagesFields_hero_bannerOption_Read {
+  permission: Boolean!
+}
+
+type PagesFields_hero_bannerOption_Update {
+  permission: Boolean!
+}
+
+type PagesFields_hero_bannerOption_Delete {
+  permission: Boolean!
+}
+
 type PagesFields_hero_media {
   create: PagesFields_hero_media_Create
   read: PagesFields_hero_media_Read
@@ -13477,6 +14028,81 @@ type PagesFields_hero_media_Update {
 }
 
 type PagesFields_hero_media_Delete {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners {
+  create: PagesFields_hero_heroBanners_Create
+  read: PagesFields_hero_heroBanners_Read
+  update: PagesFields_hero_heroBanners_Update
+  delete: PagesFields_hero_heroBanners_Delete
+  fields: PagesFields_hero_heroBanners_Fields
+}
+
+type PagesFields_hero_heroBanners_Create {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_Read {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_Update {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_Delete {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_Fields {
+  media: PagesFields_hero_heroBanners_media
+  id: PagesFields_hero_heroBanners_id
+}
+
+type PagesFields_hero_heroBanners_media {
+  create: PagesFields_hero_heroBanners_media_Create
+  read: PagesFields_hero_heroBanners_media_Read
+  update: PagesFields_hero_heroBanners_media_Update
+  delete: PagesFields_hero_heroBanners_media_Delete
+}
+
+type PagesFields_hero_heroBanners_media_Create {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_media_Read {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_media_Update {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_media_Delete {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_id {
+  create: PagesFields_hero_heroBanners_id_Create
+  read: PagesFields_hero_heroBanners_id_Read
+  update: PagesFields_hero_heroBanners_id_Update
+  delete: PagesFields_hero_heroBanners_id_Delete
+}
+
+type PagesFields_hero_heroBanners_id_Create {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_id_Read {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_id_Update {
+  permission: Boolean!
+}
+
+type PagesFields_hero_heroBanners_id_Delete {
   permission: Boolean!
 }
 
@@ -17900,7 +18526,9 @@ input mutationPage_HeroInput {
   subHeading: String
   richText: JSON
   links: [mutationPage_Hero_LinksInput]
-  media: String!
+  bannerOption: Page_Hero_bannerOption_MutationInput
+  media: String
+  heroBanners: [mutationPage_Hero_HeroBannersInput]
 }
 
 enum Page_Hero_type_MutationInput {
@@ -17940,6 +18568,16 @@ enum Page_Hero_Links_Link_appearance_MutationInput {
   secondary
 }
 
+enum Page_Hero_bannerOption_MutationInput {
+  singlePicture
+  multiplePictures
+}
+
+input mutationPage_Hero_HeroBannersInput {
+  media: String
+  id: String
+}
+
 input mutationPage_MetaInput {
   title: String
   description: String
@@ -17969,7 +18607,9 @@ input mutationPageUpdate_HeroInput {
   subHeading: String
   richText: JSON
   links: [mutationPageUpdate_Hero_LinksInput]
-  media: String!
+  bannerOption: PageUpdate_Hero_bannerOption_MutationInput
+  media: String
+  heroBanners: [mutationPageUpdate_Hero_HeroBannersInput]
 }
 
 enum PageUpdate_Hero_type_MutationInput {
@@ -18007,6 +18647,16 @@ enum PageUpdate_Hero_Links_Link_appearance_MutationInput {
   default
   primary
   secondary
+}
+
+enum PageUpdate_Hero_bannerOption_MutationInput {
+  singlePicture
+  multiplePictures
+}
+
+input mutationPageUpdate_Hero_HeroBannersInput {
+  media: String
+  id: String
 }
 
 input mutationPageUpdate_MetaInput {

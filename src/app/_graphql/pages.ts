@@ -43,7 +43,11 @@ export const PAGE = `
           links {
             link ${LINK_FIELDS()}
           }
+          bannerOption
           ${MEDIA}
+          heroBanners {
+          ${MEDIA}
+          }
         }
         layout {
           ${CONTENT}
