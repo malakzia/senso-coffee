@@ -34,6 +34,7 @@ import Icon from './graphics/icon'
 import Reviews from './collections/Reviews'
 import Distributors from './collections/DistributorsRegistration'
 import ContactUs from './collections/ContactUs'
+import ProductsReviews from './collections/ProductsReviews'
 
 const generateTitle: GenerateTitle = () => {
   return 'My Store'
@@ -102,7 +103,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Pages, Products, Orders, Media, Categories, Users, Reviews, ContactUs , Distributors, FormSubmission],
+  collections: [Pages, Products, Orders, Media, Categories, Users, Reviews, ProductsReviews,  ContactUs , Distributors, FormSubmission],
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

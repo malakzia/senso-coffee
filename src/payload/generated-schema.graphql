@@ -26,6 +26,9 @@ type Query {
   Review(id: String!, draft: Boolean): Review
   Reviews(draft: Boolean, where: Review_where, limit: Int, page: Int, sort: String): Reviews
   docAccessReview(id: String!): reviewsDocAccess
+  ProductsReview(id: String!, draft: Boolean): ProductsReview
+  ProductsReviews(draft: Boolean, where: ProductsReview_where, limit: Int, page: Int, sort: String): ProductsReviews
+  docAccessProductsReview(id: String!): productsReviewsDocAccess
   ContactUs(id: String!, draft: Boolean): ContactUs
   Contactuses(draft: Boolean, where: ContactUs_where, limit: Int, page: Int, sort: String): Contactuses
   docAccessContactUs(id: String!): contact_usDocAccess
@@ -9471,6 +9474,277 @@ type ReviewsDeleteDocAccess {
   where: JSONObject
 }
 
+type ProductsReview {
+  id: String
+  text: String
+  name: String
+  product: Product
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type ProductsReviews {
+  docs: [ProductsReview]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input ProductsReview_where {
+  text: ProductsReview_text_operator
+  name: ProductsReview_name_operator
+  product: ProductsReview_product_operator
+  updatedAt: ProductsReview_updatedAt_operator
+  createdAt: ProductsReview_createdAt_operator
+  id: ProductsReview_id_operator
+  AND: [ProductsReview_where_and]
+  OR: [ProductsReview_where_or]
+}
+
+input ProductsReview_text_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ProductsReview_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ProductsReview_product_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input ProductsReview_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ProductsReview_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ProductsReview_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ProductsReview_where_and {
+  text: ProductsReview_text_operator
+  name: ProductsReview_name_operator
+  product: ProductsReview_product_operator
+  updatedAt: ProductsReview_updatedAt_operator
+  createdAt: ProductsReview_createdAt_operator
+  id: ProductsReview_id_operator
+  AND: [ProductsReview_where_and]
+  OR: [ProductsReview_where_or]
+}
+
+input ProductsReview_where_or {
+  text: ProductsReview_text_operator
+  name: ProductsReview_name_operator
+  product: ProductsReview_product_operator
+  updatedAt: ProductsReview_updatedAt_operator
+  createdAt: ProductsReview_createdAt_operator
+  id: ProductsReview_id_operator
+  AND: [ProductsReview_where_and]
+  OR: [ProductsReview_where_or]
+}
+
+type productsReviewsDocAccess {
+  fields: ProductsReviewsDocAccessFields
+  create: ProductsReviewsCreateDocAccess
+  read: ProductsReviewsReadDocAccess
+  update: ProductsReviewsUpdateDocAccess
+  delete: ProductsReviewsDeleteDocAccess
+}
+
+type ProductsReviewsDocAccessFields {
+  text: ProductsReviewsDocAccessFields_text
+  name: ProductsReviewsDocAccessFields_name
+  product: ProductsReviewsDocAccessFields_product
+  updatedAt: ProductsReviewsDocAccessFields_updatedAt
+  createdAt: ProductsReviewsDocAccessFields_createdAt
+}
+
+type ProductsReviewsDocAccessFields_text {
+  create: ProductsReviewsDocAccessFields_text_Create
+  read: ProductsReviewsDocAccessFields_text_Read
+  update: ProductsReviewsDocAccessFields_text_Update
+  delete: ProductsReviewsDocAccessFields_text_Delete
+}
+
+type ProductsReviewsDocAccessFields_text_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_text_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_text_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_text_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_name {
+  create: ProductsReviewsDocAccessFields_name_Create
+  read: ProductsReviewsDocAccessFields_name_Read
+  update: ProductsReviewsDocAccessFields_name_Update
+  delete: ProductsReviewsDocAccessFields_name_Delete
+}
+
+type ProductsReviewsDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_product {
+  create: ProductsReviewsDocAccessFields_product_Create
+  read: ProductsReviewsDocAccessFields_product_Read
+  update: ProductsReviewsDocAccessFields_product_Update
+  delete: ProductsReviewsDocAccessFields_product_Delete
+}
+
+type ProductsReviewsDocAccessFields_product_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_product_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_product_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_product_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_updatedAt {
+  create: ProductsReviewsDocAccessFields_updatedAt_Create
+  read: ProductsReviewsDocAccessFields_updatedAt_Read
+  update: ProductsReviewsDocAccessFields_updatedAt_Update
+  delete: ProductsReviewsDocAccessFields_updatedAt_Delete
+}
+
+type ProductsReviewsDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_createdAt {
+  create: ProductsReviewsDocAccessFields_createdAt_Create
+  read: ProductsReviewsDocAccessFields_createdAt_Read
+  update: ProductsReviewsDocAccessFields_createdAt_Update
+  delete: ProductsReviewsDocAccessFields_createdAt_Delete
+}
+
+type ProductsReviewsDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductsReviewsReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductsReviewsUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductsReviewsDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type ContactUs {
   id: String
   firstName: String!
@@ -13559,6 +13833,7 @@ type Access {
   categories: categoriesAccess
   users: usersAccess
   reviews: reviewsAccess
+  productsReviews: productsReviewsAccess
   contact_us: contact_usAccess
   distributors: distributorsAccess
   form_submission: form_submissionAccess
@@ -16367,6 +16642,157 @@ type ReviewsDeleteAccess {
   where: JSONObject
 }
 
+type productsReviewsAccess {
+  fields: ProductsReviewsFields
+  create: ProductsReviewsCreateAccess
+  read: ProductsReviewsReadAccess
+  update: ProductsReviewsUpdateAccess
+  delete: ProductsReviewsDeleteAccess
+}
+
+type ProductsReviewsFields {
+  text: ProductsReviewsFields_text
+  name: ProductsReviewsFields_name
+  product: ProductsReviewsFields_product
+  updatedAt: ProductsReviewsFields_updatedAt
+  createdAt: ProductsReviewsFields_createdAt
+}
+
+type ProductsReviewsFields_text {
+  create: ProductsReviewsFields_text_Create
+  read: ProductsReviewsFields_text_Read
+  update: ProductsReviewsFields_text_Update
+  delete: ProductsReviewsFields_text_Delete
+}
+
+type ProductsReviewsFields_text_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_text_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_text_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_text_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_name {
+  create: ProductsReviewsFields_name_Create
+  read: ProductsReviewsFields_name_Read
+  update: ProductsReviewsFields_name_Update
+  delete: ProductsReviewsFields_name_Delete
+}
+
+type ProductsReviewsFields_name_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_name_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_name_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_name_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_product {
+  create: ProductsReviewsFields_product_Create
+  read: ProductsReviewsFields_product_Read
+  update: ProductsReviewsFields_product_Update
+  delete: ProductsReviewsFields_product_Delete
+}
+
+type ProductsReviewsFields_product_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_product_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_product_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_product_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_updatedAt {
+  create: ProductsReviewsFields_updatedAt_Create
+  read: ProductsReviewsFields_updatedAt_Read
+  update: ProductsReviewsFields_updatedAt_Update
+  delete: ProductsReviewsFields_updatedAt_Delete
+}
+
+type ProductsReviewsFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_createdAt {
+  create: ProductsReviewsFields_createdAt_Create
+  read: ProductsReviewsFields_createdAt_Read
+  update: ProductsReviewsFields_createdAt_Update
+  delete: ProductsReviewsFields_createdAt_Delete
+}
+
+type ProductsReviewsFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ProductsReviewsFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ProductsReviewsCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductsReviewsReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductsReviewsUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductsReviewsDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type contact_usAccess {
   fields: ContactUsFields
   create: ContactUsCreateAccess
@@ -18491,6 +18917,9 @@ type Mutation {
   createReview(data: mutationReviewInput!, draft: Boolean): Review
   updateReview(id: String!, autosave: Boolean, data: mutationReviewUpdateInput!, draft: Boolean): Review
   deleteReview(id: String!): Review
+  createProductsReview(data: mutationProductsReviewInput!, draft: Boolean): ProductsReview
+  updateProductsReview(id: String!, autosave: Boolean, data: mutationProductsReviewUpdateInput!, draft: Boolean): ProductsReview
+  deleteProductsReview(id: String!): ProductsReview
   createContactUs(data: mutationContactUsInput!, draft: Boolean): ContactUs
   updateContactUs(id: String!, autosave: Boolean, data: mutationContactUsUpdateInput!, draft: Boolean): ContactUs
   deleteContactUs(id: String!): ContactUs
@@ -18574,7 +19003,7 @@ enum Page_Hero_bannerOption_MutationInput {
 }
 
 input mutationPage_Hero_HeroBannersInput {
-  media: String
+  media: String!
   id: String
 }
 
@@ -18655,7 +19084,7 @@ enum PageUpdate_Hero_bannerOption_MutationInput {
 }
 
 input mutationPageUpdate_Hero_HeroBannersInput {
-  media: String
+  media: String!
   id: String
 }
 
@@ -18960,6 +19389,22 @@ input mutationReviewInput {
 input mutationReviewUpdateInput {
   text: String
   name: String
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationProductsReviewInput {
+  text: String
+  name: String
+  product: String
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationProductsReviewUpdateInput {
+  text: String
+  name: String
+  product: String
   updatedAt: String
   createdAt: String
 }

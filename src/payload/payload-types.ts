@@ -27,6 +27,7 @@ export interface Config {
     categories: Category;
     users: User;
     reviews: Review;
+    productsReviews: ProductsReview;
     'contact-us': ContactUs;
     distributors: Distributor;
     'form-submission': FormSubmission;
@@ -77,7 +78,7 @@ export interface Page {
     media?: string | Media | null;
     heroBanners?:
       | {
-          media?: string | Media | null;
+          media: string | Media;
           id?: string | null;
         }[]
       | null;
@@ -654,6 +655,18 @@ export interface Review {
   id: string;
   text?: string | null;
   name?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "productsReviews".
+ */
+export interface ProductsReview {
+  id: string;
+  text?: string | null;
+  name?: string | null;
+  product?: (string | null) | Product;
   updatedAt: string;
   createdAt: string;
 }

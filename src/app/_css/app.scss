@@ -255,3 +255,10 @@ span {
   outline: 0;
   cursor: pointer;
 }
+
+a {
+  transition: opacity 0.2s ease-in-out;
+  &:hover {
+    opacity: 75%;
+  }
+}

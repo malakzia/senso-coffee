@@ -82,11 +82,33 @@ const FooterComponent = ({ footer, settings }: { footer: Footer; settings: Setti
         </div>
       </div>
       <div
-        className="container mx-auto px-8 flex justify-center pt-4 pb-8 text-white border-t border-solid border-x-0 border-b-0 border-brand-border-gray/20
-            lg:justify-start lg:px-[64px]
+        className="container mx-auto px-8 flex w-full flex-col gap-[12px] items-center justify-center pt-4 pb-8 text-white border-t border-solid border-x-0 border-b-0 border-brand-border-gray/20
+            lg:justify-between lg:px-[64px] lg:flex-row
             "
       >
         <p className="text-b12 font-normal leading-headingLH2">{footer?.copyright || ''}</p>
+        {user && (
+              <Link
+                onClick={() => {
+                  window.location.href = '/account'
+                }}
+                href="/account"
+                className="flex items-center cursor-pointer text-white no-underline text-b16 leading-headingLH2 text-center hover:text-white/70 duration-300"
+              >
+                Account
+              </Link>
+            )}
+            {!user && (
+              <Link
+                onClick={() => {
+                  window.location.href = '/login'
+                }}
+                href="/login"
+                className="flex items-center cursor-pointer text-white no-underline text-b16 leading-headingLH2 text-center hover:text-white/70 duration-300"
+              >
+                Login
+              </Link>
+            )}
       </div>
     </footer>
   )

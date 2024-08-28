@@ -314,7 +314,7 @@ export const CollectionArchive: React.FC<Props> = props => {
               {results.docs?.map((result, index) => {
                 if (typeof result === 'object' && result !== null) {
                   return (
-                    <div key={index} className="h-full">
+                    <div key={index} className="h-full mx-[16px]">
                       <ProductsCarousel doc={result} relationTo={relationTo} showCategories />
                     </div>
                   )

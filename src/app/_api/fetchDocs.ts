@@ -9,6 +9,7 @@ import { payloadToken } from './token'
 import { CATEGORIES } from '../_graphql/categories'
 import { DISTRIBUTORS } from '../_graphql/distributors'
 import { REVIEWS_QUERY } from '../_graphql/reviews'
+import { PRODUCTS_REVIEWS_QUERY } from '../_graphql/products-reviews'
 
 const queryMap = {
   pages: {
@@ -34,6 +35,10 @@ const queryMap = {
   reviews: {
     query: REVIEWS_QUERY,
     key: 'Reviews',
+  },
+  productsReviews: {
+    query: PRODUCTS_REVIEWS_QUERY,
+    key: 'ProductsReviews',
   }
 }
 

@@ -2,18 +2,18 @@
 
 import React, { useMemo } from 'react'
 import Carousel from 'react-multi-carousel'
-import 'react-multi-carousel/lib/styles.css' // Ensure the carousel styles are imported
+import 'react-multi-carousel/lib/styles.css'
 import { HR } from '../../_components/HR'
 
 interface ReviewsWrapperProps {
   reviews?: {
     name?: string | null
-    review?: string | null
+    text?: string | null
     rating?: string | null
   }[]
 }
 
-export const ReviewsWrapper: React.FC<ReviewsWrapperProps> = ({ reviews = [] }) => {
+export const ProductReviewsWrapper: React.FC<ReviewsWrapperProps> = ({ reviews = [] }) => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -38,7 +38,7 @@ export const ReviewsWrapper: React.FC<ReviewsWrapperProps> = ({ reviews = [] }) 
   }
 
   const generateStars = (rating: string | null) => {
-    const ratingValue = rating ? parseInt(rating.replace('_', ''), 10) : 0
+    const ratingValue = parseInt(rating)
     const stars = []
     for (let i = 0; i < 5; i++) {
       stars.push(
@@ -56,7 +56,7 @@ export const ReviewsWrapper: React.FC<ReviewsWrapperProps> = ({ reviews = [] }) 
   }
 
   const ratingCounts = useMemo(() => {
-    const counts = { _1: 0, _2: 0, _3: 0, _4: 0, _5: 0 }
+    const counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
     reviews.forEach(review => {
       if (review?.rating && counts.hasOwnProperty(review.rating)) {
         counts[review.rating] += 1
@@ -67,8 +67,8 @@ export const ReviewsWrapper: React.FC<ReviewsWrapperProps> = ({ reviews = [] }) 
 
   return (
     <div
-      className="container mx-auto py-8 px-4
-        lg:py-16 lg:px-8
+      className="container mx-auto pt-8 px-4
+        lg:pt-16 lg:px-8
         "
     >
       <div className="my-6">
@@ -80,6 +80,7 @@ export const ReviewsWrapper: React.FC<ReviewsWrapperProps> = ({ reviews = [] }) 
           showDots={false}
           arrows={false}
           responsive={responsive}
+          containerClass="gap-[32px]"
         >
           {reviews.map((review, index) => (
             <div className="flex justify-start mx-[16px]" key={index}>
@@ -91,7 +92,7 @@ export const ReviewsWrapper: React.FC<ReviewsWrapperProps> = ({ reviews = [] }) 
                   <div className="flex gap-[2px]">{generateStars(review?.rating)}</div>
                 </div>
                 <p className="text-b14 leading-bodyLH font-normal text-brand-dark">
-                  {review?.review || 'No review available'}
+                  {review?.text || 'No review available'}
                 </p>
               </div>
             </div>

@@ -87,33 +87,6 @@ const HeaderComponent = ({ header, settings }: { header: Header; settings: Setti
             />
           </div>
           <div className="flex gap-3 items-center">
-            {user && (
-              <Link
-                onClick={() => {
-                  window.location.href = '/account'
-                }}
-                href="/account"
-                className="flex items-center cursor-pointer"
-              >
-                <NextImage
-                  width={24}
-                  height={24}
-                  alt="Account"
-                  src={'/assets/icons/user-icon-menu.svg'}
-                />
-              </Link>
-            )}
-            {!user && (
-              <Link
-                onClick={() => {
-                  window.location.href = '/login'
-                }}
-                href="/login"
-                className="flex items-center cursor-pointer"
-              >
-                <NextImage width={24} height={24} alt="Login" src={'/assets/icons/SignIn.svg'} />
-              </Link>
-            )}
             <CartLink />
             <div className="lg:hidden flex items-center">
               <MobileNav settings={settings} header={header} />

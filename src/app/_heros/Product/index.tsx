@@ -1,20 +1,16 @@
 'use client'
 
-import React, { Fragment, useState } from 'react'
-import ImageGallery from 'react-image-gallery'
+import React, { Fragment, useEffect, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
-import { Product } from '../../../payload/payload-types'
+import { Product, ProductsReview } from '../../../payload/payload-types'
 import { AddToCartButton } from '../../_components/AddToCartButton'
-import { Gutter } from '../../_components/Gutter'
-import { Media } from '../../_components/Media'
-import { Message } from '../../_components/Message'
 import { Price } from '../../_components/Price'
-import RichText from '../../_components/RichText'
 import ProductImages from './ProductImages'
-
 import classes from './index.module.scss'
+import { fetchDocs } from '../../_api/fetchDocs'
+import { SkeletonLoader } from './skeleton-loader'
+import { ProductReviewsWrapper } from '../../_components/ProductReviewsWrapper'
 
 export const ProductHero: React.FC<{
   product: Product
@@ -30,35 +26,50 @@ export const ProductHero: React.FC<{
   } = product
 
   const [quantity, setQuantity] = useState(1)
+  const [productReviews, setProductReviews] = useState<ProductsReview[] | null>(null)
+  const [loadingReviews, setLoadingReviews] = useState(true)
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const fetchedReviews = await fetchDocs<ProductsReview>('productsReviews')
+
+        const filteredReviews = fetchedReviews.filter(review =>
+          typeof review?.product === 'string' ? review?.product : review?.product?.id === id,
+        )
+
+        setProductReviews(filteredReviews)
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setLoadingReviews(false)
+      }
+    }
+
+    void fetchReviews()
+  }, [id])
 
   const decrementQty = () => {
     const updatedQty = quantity > 1 ? quantity - 1 : 1
-
     setQuantity(updatedQty)
   }
 
   const incrementQty = () => {
     const updatedQty = quantity + 1
-
     setQuantity(updatedQty)
   }
 
   const enterQty = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedQty = Number(e.target.value)
-
     setQuantity(updatedQty)
   }
 
   return (
     <Fragment>
       <section className="">
-        <div className="container mx-auto pt-28 pb-8 px-4 lg:pb-16 lg:px-8">
+        <div className="container mx-auto pt-28 pb-0 px-4 lg:pb-0 lg:px-8 flex flex-col">
           <div className="flex flex-col gap-6 items-center w-full lg:flex-row lg:gap-16">
             <div className="w-full max-w-[696px] lg:max-h-[650px]">
-              {/* {!metaImage && <div className={classes.placeholder}>No image</div>}
-                {metaImage && typeof metaImage !== 'string' && (
-                  <Media imgClassName={classes.image} resource={metaImage}/>
-                )} */}
               <ProductImages productImages={productImages} />
             </div>
             <div className="w-full flex flex-col gap-5 max-w-[648px]">
@@ -67,11 +78,8 @@ export const ProductHero: React.FC<{
                   {categories?.map((category, index) => {
                     if (typeof category === 'object' && category !== null) {
                       const { title: categoryTitle } = category
-
                       const titleToUse = categoryTitle || 'Untitled category'
-
                       const isLast = index === categories.length - 1
-
                       return (
                         <Fragment key={index}>
                           <p className="text-b12 text-brand-dark leading-headingLH1 tracking-wide capitalize">
@@ -81,7 +89,6 @@ export const ProductHero: React.FC<{
                         </Fragment>
                       )
                     }
-
                     return null
                   })}
                 </div>
@@ -123,14 +130,12 @@ export const ProductHero: React.FC<{
                           className={classes.qtnBt}
                         />
                       </div>
-
                       <input
                         type="text"
                         className={classes.quantityInput}
                         value={quantity}
                         onChange={enterQty}
                       />
-
                       <div className={classes.quantityBtn} onClick={incrementQty}>
                         <Image
                           src="/assets/icons/plus.svg"
@@ -156,8 +161,20 @@ export const ProductHero: React.FC<{
               </div>
             </div>
           </div>
+
+          <div className="mt-12">
+            {loadingReviews ? (
+              <div className="skeleton-loader">
+                <SkeletonLoader />
+              </div>
+            ) : productReviews && productReviews.length > 0 ? (
+              <ProductReviewsWrapper reviews={productReviews} />
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       </section>
-    </Fragment> 
+    </Fragment>
   )
 }

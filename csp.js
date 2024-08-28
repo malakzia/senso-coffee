@@ -11,7 +11,7 @@ const policies = {
   'child-src': ["'self'"],
   'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
   'img-src': ["'self'", 'https://*.stripe.com', 'https://raw.githubusercontent.com', 'https://graph.instagram.com'],
-  'font-src': ["'self'"],
+  'font-src': ["'self'", 'https://fonts.gstatic.com', 'https://fonts.googleapis.com'],
   'frame-src': [
     "'self'",
     'https://checkout.stripe.com',

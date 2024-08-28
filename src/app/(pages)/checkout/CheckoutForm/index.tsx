@@ -11,6 +11,7 @@ import { useCart } from '../../../_providers/Cart'
 import { useCurrency } from '../../../_providers/CurrencyContext'
 import classes from './index.module.scss'
 import { Input } from '../../../_components/Input'
+import ReviewModal from '../ReviewModal'
 
 type FormData = {
   customerName: string
@@ -29,7 +30,7 @@ export const CheckoutForm: React.FC<{}> = () => {
   const [isLoading, setIsLoading] = React.useState(false)
   const router = useRouter()
   const { cart, cartTotal } = useCart()
-  const { currency } = useCurrency()  // Call hook here
+  const { currency } = useCurrency() // Call hook here
 
   const {
     register,
@@ -90,13 +91,19 @@ export const CheckoutForm: React.FC<{}> = () => {
         setIsLoading(false)
       }
     },
-    [router, cart, cartTotal, currency],  // Add currency to dependency array
+    [router, cart, cartTotal, currency], // Add currency to dependency array
   )
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       {error && <Message error={error} />}
-
+      {cart && cart?.items?.length > 0 && (
+        <ReviewModal
+          productIds={(cart?.items || []).map(item =>
+            typeof item.product === 'string' ? item.product : item.product.id,
+          )}
+        />
+      )}
       <div className="flex flex-col lg:flex-row gap-6 w-full max-w-[780px]">
         <Input
           name="customerName"

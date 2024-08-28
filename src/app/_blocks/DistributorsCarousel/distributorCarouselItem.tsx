@@ -41,7 +41,7 @@ const DistributorCarouselItem: React.FC<{ distributors: Distributor[] }> = ({ di
         {distributors?.map((distributor, index) => (
           <div
             key={index}
-            className="border-r border-[#E0DBD6] border-solid border-0 p-4 text-left"
+            className="border-r border-[#E0DBD6] border-solid border-0 p-4 text-left mx-[16px]"
           >
             <div className="mb-2">
               <p className="text-brand-dark text-h4M leading-headingLH1 font-medium">

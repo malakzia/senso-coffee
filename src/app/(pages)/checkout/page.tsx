@@ -38,10 +38,10 @@ export default async function Checkout() {
 }
 
 export const metadata: Metadata = {
-  title: 'Account',
+  title: 'Checkout | Senso Coffee',
   description: 'Create an account or log in to your existing account.',
   openGraph: mergeOpenGraph({
-    title: 'Account',
-    url: '/account',
+    title: 'Checkout',
+    url: '/checkout',
   }),
 }
