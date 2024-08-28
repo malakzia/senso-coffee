@@ -69,7 +69,7 @@ const Form = () => {
       ) : (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 justify-center
+          className="flex flex-col gap-4 justify-center items-center
                 md:flex-row
                 lg:flex-row
             "

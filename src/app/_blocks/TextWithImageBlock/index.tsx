@@ -16,10 +16,10 @@ export const TextWithImageBlock: React.FC<Props & { id?: string }> = ({
   return (
     <section id="our-mission-and-vision" className="bg-white">
       <div
-        className={`container mx-auto py-8 px-4 gap-4 flex flex-col items-center ${
+        className={`container mx-auto py-[24px] px-4 gap-4 flex flex-col items-center ${
           imagePosition === 'left' ? 'lg:flex-row-reverse' : 'lg:flex-row'
         }
-      lg:py-16 lg:px-8 lg:gap-8
+      lg:py-[30px] lg:px-8 lg:gap-8
       `}
       >
         <div className="text-center flex flex-col items-center flex-1 lg:text-left">

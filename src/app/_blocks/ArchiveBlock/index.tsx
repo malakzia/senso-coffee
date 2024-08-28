@@ -31,12 +31,17 @@ export const ArchiveBlock: React.FC<
     <section id={`block-${id}`} className={classes.archiveBlock}>
       <div className={['container mx-auto py-8 px-6 lg:py-16 lg:px-8'].filter(Boolean).join(' ')}>
         {introContent && (
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-[32px]">
             <div className="flex items-center text-center flex-col">
               <RichText className="rich-text" content={introContent} />
               <Link className={classes.button} href={'/products'}>
                 <span>Online Store</span>
-                <Image alt="Arrow Up" width={32} height={32} src={'/assets/icons/ArrowUpRightDark.svg'} />
+                <Image
+                  alt="Arrow Up"
+                  width={32}
+                  height={32}
+                  src={'/assets/icons/ArrowUpRightDark.svg'}
+                />
               </Link>
             </div>
             <CollectionArchive

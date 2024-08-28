@@ -339,6 +339,8 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -665,6 +667,7 @@ export interface Review {
 export interface ProductsReview {
   id: string;
   text?: string | null;
+  rating?: string | null;
   name?: string | null;
   product?: (string | null) | Product;
   updatedAt: string;
