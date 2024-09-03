@@ -30,7 +30,7 @@ export default async function Checkout() {
 
   return (
     <section>
-      <div className='container mx-auto px-4 pt-28 pb-28'>
+      <div className="container mx-auto px-4 pt-28 lg:pt-[160px] pb-28">
         <CheckoutPage settings={settings} />
       </div>
     </section>

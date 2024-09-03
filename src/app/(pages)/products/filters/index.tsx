@@ -60,7 +60,6 @@ const Filters = ({ categories }: { categories: Category[] }) => {
             </button>
           )}
         </div>
-        {pathName == '/search' && (
           <div>
             <HR className={classes.hr} />
             <h6
@@ -85,7 +84,6 @@ const Filters = ({ categories }: { categories: Category[] }) => {
               />
             </div>
           </div>
-        )}
       </div>
     </div>
   )

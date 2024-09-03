@@ -29,6 +29,22 @@ export const Header: GlobalConfig = {
           },
           fields: [
             {
+              name: 'showAs',
+              type: 'select',
+              label: 'Show Submenu As',
+              defaultValue: 'list',
+              options: [
+                {
+                  label: 'List',
+                  value: 'list',
+                },
+                {
+                  label: 'Banner',
+                  value: 'banner',
+                },
+              ],
+            },
+            {
               name: 'menuHeading',
               label: 'Menu Heading',
               type: 'text',
@@ -38,7 +54,37 @@ export const Header: GlobalConfig = {
               name: 'subMenuLinks',
               label: 'Sub Menu Links',
               type: 'array',
-              fields: [link({ appearances: false })],
+              fields: [
+                {
+                  name: 'media',
+                  label: 'Menu Item Banner',
+                  type: 'upload',
+                  relationTo: 'media',
+                },
+                link({ appearances: false }),
+                {
+                  name: 'enableSubMenuTwo',
+                  type: 'checkbox',
+                  label: 'Add Sub Menu Two',
+                },
+                {
+                  name: 'subMenuTwo',
+                  label: 'Sub Meny Level Two',
+                  type: 'array',
+                  admin: {
+                    condition: (_, { enableSubMenuTwo }) => Boolean(enableSubMenuTwo),
+                  },
+                  fields: [
+                    {
+                      name: 'media',
+                      label: 'Menu Item Banner',
+                      type: 'upload',
+                      relationTo: 'media',
+                    },
+                    link({ appearances: false }),
+                  ],
+                },
+              ],
             },
           ],
         },

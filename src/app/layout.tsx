@@ -11,6 +11,7 @@ import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
 import './_css/app.scss'
 import '../../tailwind.css'
 import Loading from './loading'
+import Head from 'next/head'
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],

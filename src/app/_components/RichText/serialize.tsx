@@ -24,7 +24,7 @@ type Leaf = {
 const serialize = (children?: Children): React.ReactNode[] =>
   children?.map((node, i) => {
     if (Text.isText(node)) {
-      let text = <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
+      let text = <text dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
 
       if (node.bold) {
         text = <strong key={i}>{text}</strong>

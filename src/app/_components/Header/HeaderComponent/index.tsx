@@ -50,33 +50,37 @@ const HeaderComponent = ({ header, settings }: { header: Header; settings: Setti
     <div
       className={[
         noHeaderFooterUrls.includes(pathName) ? styles.hide : '',
-        `border-b border-0 border-brand-primary/25 border-solid flex justify-between lg:px-8 px-4 py-4 backdrop-blur-xl filter ${
+        `border-b border-0 border-brand-primary/25 border-solid flex justify-between lg:px-8 px-[24px] pt-4 backdrop-blur-xl filter ${
           isBuildYourBrandPage || isSearchPage ? 'bg-brand-primary/50' : 'bg-brand-primary/50'
         }`,
       ]
         .filter(Boolean)
         .join(' ')}
     >
-      <div className="container mx-auto flex justify-between w-full">
-        <HeaderNav header={header} />
-        <Link className="hidden lg:flex" href="/">
-          <Image
-            className="object-contain object-center lg:flex hidden"
-            height={48}
-            width={240}
-            alt={settings?.siteLogo?.alt || 'Senso Coffee'}
-            src={settings?.siteLogo?.url || ''}
-          />
-        </Link>
-        <div className="flex gap-3 flex-1 lg:justify-end justify-between items-center">
+      <div className="container mx-auto flex flex-col justify-center items-center w-full">
+        <div className='flex flex-row w-full justify-between'>
+        <div className="flex flex-row items-center gap-7">
+          <Link className="hidden lg:flex items-center" href="/">
+            <Image
+              className="object-contain object-center lg:flex hidden"
+              height={48}
+              width={240}
+              alt={settings?.siteLogo?.alt || 'Senso Coffee'}
+              src={settings?.siteLogo?.url || ''}
+            />
+          </Link>
+        </div>
+        <div className="flex gap-3 lg:justify-end justify-between items-center">
           <div className="flex flex-row items gap-2 cursor-pointer">
-            { searchQuery && <Link
-              className={`flex items-center`}
-              href={{ pathname: '/search', query: createSearchParams() }}
-              target="_self"
-            >
-              <NextImage width={24} height={24} src={'/search-icon.svg'} alt="Search Icon" />
-            </Link>}
+            {searchQuery && (
+              <Link
+                className={`flex items-center`}
+                href={{ pathname: '/search', query: createSearchParams() }}
+                target="_self"
+              >
+                <NextImage width={24} height={24} src={'/search-icon.svg'} alt="Search Icon" />
+              </Link>
+            )}
             <input
               ref={inputRef}
               className="bg-transparent min-h-10 outline-none border-b border-0 border-solid text-b14 leading-headingLH2 border-white text-white placeholder:text-placeholder "
@@ -93,6 +97,8 @@ const HeaderComponent = ({ header, settings }: { header: Header; settings: Setti
             </div>
           </div>
         </div>
+        </div>
+        <HeaderNav header={header} />
       </div>
     </div>
   )

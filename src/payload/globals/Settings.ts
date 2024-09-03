@@ -53,6 +53,19 @@ export const Settings: GlobalConfig = {
       ],
     },
     {
+      name: 'enableDelivery',
+      type: 'checkbox',
+      label: 'Enable Free Delivery',
+    },
+    {
+      name: 'deliveryValue',
+      label: 'Free Delivery Value',
+      type: 'number',
+      admin: {
+        condition: (_, { enableDelivery }) => Boolean(enableDelivery),
+      },
+    },
+    {
       name: 'socials',
       type: 'array',
       maxRows: 6,

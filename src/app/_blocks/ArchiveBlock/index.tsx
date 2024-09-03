@@ -33,7 +33,7 @@ export const ArchiveBlock: React.FC<
         {introContent && (
           <div className="flex flex-col gap-[32px]">
             <div className="flex items-center text-center flex-col">
-              <RichText className="rich-text" content={introContent} />
+              <RichText className="rich-text text-balance" content={introContent} />
               <Link className={classes.button} href={'/products'}>
                 <span>Online Store</span>
                 <Image

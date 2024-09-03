@@ -85,7 +85,7 @@ export const Card: React.FC<{
           <Media imgClassName={'object-contain bg-white object-center'} resource={metaImage} fill />
         )}
       </Link>
-      <div className={'flex flex-grow flex-col gap-5 justify-between'}>
+      <div className={'flex flex-grow flex-col gap-5 justify-between w-full'}>
         <div className="flex flex-col gap-1">
           {showCategories && hasCategories && (
             <div className="flex flex-row gap-1 flex-wrap w-full">

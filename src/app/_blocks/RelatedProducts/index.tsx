@@ -65,7 +65,7 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = props => {
             {docs?.map((result, index) => {
               if (typeof result === 'object' && result !== null) {
                 return (
-                  <div className='mx-[16px]'>
+                  <div key={index} className='mx-[16px]'>
                     <ProductsCarousel doc={result} relationTo={relationTo} showCategories={true} />
                   </div>
                 )

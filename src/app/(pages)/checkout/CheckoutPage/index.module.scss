@@ -51,3 +51,10 @@
 .error {
   margin-top: calc(var(--block-padding) - var(--base));
 }
+
+
+.textGradientDelivery {
+  background: linear-gradient(180deg, rgb(186, 115, 72), #F85825);
+  -webkit-background-clip: text;
+  background-clip: text;
+}

@@ -15,8 +15,7 @@ export const ProductLongDescription: React.FC<
     <section className="bg-cover bg-no-repeat bg-center">
       <div className="container mx-auto py-8 px-4 text-center flex justify-center">
         <div
-          className="md:max-w-[520px]
-      lg:py-16 lg:px-8 lg:max-w-[840px]"
+          className="md:max-w-[520px] lg:pt-[18px] lg:max-w-[840px]"
         >
           <RichText className="rich-text mb-5 text-brand-dark leading-bodyLH" content={richText} />
         </div>

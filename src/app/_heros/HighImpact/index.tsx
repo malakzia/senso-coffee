@@ -24,10 +24,10 @@ export const HighImpactHero: React.FC<Page['hero']> = ({
     <div
       id="top"
       style={bannerOption === 'singlePicture' ? singlePictureStyle : undefined}
-      className={`bg-cover bg-no-repeat min-h-[520px] bg-center flex flex-col justify-end lg:min-h-[720px]`}
+      className={`bg-cover bg-no-repeat min-h-[520px] bg-center flex flex-col justify-end lg:min-h-[720px] bg-brand-dark`}
     >
       {bannerOption === 'multiplePictures' && heroBanners.length > 0 && (
-        <div className='absolute w-full left-0 top-0 h-full lg:min-h-[730px] lg:max-h-[732px] max-h-[520px]'>
+        <div className="absolute w-full left-0 top-0 h-full lg:min-h-[730px] lg:max-h-[732px] max-h-[520px]">
           <HeroBannerCarousel heroBanners={heroBanners} />
         </div>
       )}

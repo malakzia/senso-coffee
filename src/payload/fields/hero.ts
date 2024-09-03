@@ -61,6 +61,9 @@ export const hero: Field = {
       type: 'select',
       label: 'Banner Options',
       defaultValue: 'singlePicture',
+      admin: {
+        condition: (_, {type} = {}) => ['highImpact'].includes(type),
+      },
       options: [
         {
           label: 'Single Picture',

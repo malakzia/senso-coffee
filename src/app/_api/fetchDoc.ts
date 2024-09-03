@@ -6,6 +6,7 @@ import { PAGE } from '../_graphql/pages'
 import { PRODUCT } from '../_graphql/products'
 import { GRAPHQL_API_URL } from './shared'
 import { payloadToken } from './token'
+import { COUPON } from '../_graphql/coupons'
 
 const queryMap = {
   pages: {
@@ -20,6 +21,10 @@ const queryMap = {
     query: ORDER,
     key: 'Orders',
   },
+  coupons: {
+    query: COUPON,
+    key: 'Coupons',
+  }
 }
 
 export const fetchDoc = async <T>(args: {
@@ -45,7 +50,7 @@ export const fetchDoc = async <T>(args: {
       'Content-Type': 'application/json',
       ...(token?.value && draft ? { Authorization: `JWT ${token.value}` } : {}),
     },
-    cache: 'no-store',
+    // cache: 'no-store',
     next: { tags: [`${collection}_${slug}`] },
     body: JSON.stringify({
       query: queryMap[collection].query,

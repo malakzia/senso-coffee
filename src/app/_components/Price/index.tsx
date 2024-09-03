@@ -52,7 +52,7 @@ export const Price: React.FC<{
   }, [priceJSON, quantity, currency])
 
   return (
-    <div className={classes.actions}>
+    <div className='flex flex-col flex-wrap w-full gap-[12px]'>
       {price?.actualPrice && price?.withQuantity && (
         <div className={classes.price}>
           <p className="text-b16 text-brand-dark leading-headingLH2">{price?.withQuantity} {currency}</p>
@@ -69,7 +69,7 @@ export const Price: React.FC<{
         ) : null
       ) : (
         button && (
-          <div className="px-3 py-2 bg-brand-red text-white text-b16 leading-headingLH2 font-semibold rounded-xl">
+          <div className="text-brand-dark text-b16 leading-headingLH2 font-normal rounded-xl">
             Out of Stock
           </div>
         )

@@ -1,5 +1,5 @@
 import { LINK_FIELDS } from './link'
-import { MEDIA_FIELDS } from './media'
+import { MEDIA, MEDIA_FIELDS } from './media'
 
 export const HEADER = `
   Header {
@@ -7,9 +7,16 @@ export const HEADER = `
       enableSubMenu
       link ${LINK_FIELDS({ disableAppearance: true })}
       subMenuItems {
+        showAs
         menuHeading
         subMenuLinks {
+          ${MEDIA}
           link ${LINK_FIELDS({ disableAppearance: true })}
+          enableSubMenuTwo
+          subMenuTwo {
+            ${MEDIA}
+            link ${LINK_FIELDS({ disableAppearance: true })}
+          }
         }
       }
 		}
@@ -55,6 +62,8 @@ export const SETTINGS = `
       url
     }
     siteCurrency
+    enableDelivery
+    deliveryValue
     socials {
       link ${LINK_FIELDS({ disableAppearance: true })}
     }

@@ -19,7 +19,7 @@ export const CheckoutPage: React.FC<{
   settings: Settings
 }> = props => {
   const {
-    settings: { productsPage },
+    settings: { productsPage, enableDelivery, deliveryValue },
   } = props
 
   const { user } = useAuth()
@@ -30,6 +30,8 @@ export const CheckoutPage: React.FC<{
   // const { theme } = useTheme()
 
   const { cart, cartIsEmpty, cartTotal } = useCart()
+  const cartTotalAmount = parseFloat(cartTotal.formatted.replace(/[^0-9.-]+/g, ''))
+  const deliveryAmount = deliveryValue
 
   useEffect(() => {
     if (user !== null && cartIsEmpty) {
@@ -96,7 +98,7 @@ export const CheckoutPage: React.FC<{
             <p className={classes.subtotal}>Subtotal</p>
           </div>
 
-          <ul className='p-0'>
+          <ul className="p-0">
             {cart?.items?.map((item, index) => {
               if (typeof item.product === 'object') {
                 const {
@@ -123,9 +125,30 @@ export const CheckoutPage: React.FC<{
               }
               return null
             })}
+            {enableDelivery && cartTotal.formatted && (
+              <div className="mt-[24px]">
+                {cartTotalAmount >= deliveryAmount ? (
+                  <div className="flex items-center gap-[12px] justify-center">
+                    <h6
+                      className={`text-gradient-delivery text-transparent bg-clip-text text-h5 font-semibold leading-[120%] ${classes.textGradientDelivery}`}
+                    >
+                      Congratulations! You’ve Earned Free Delivery!
+                    </h6>{' '}
+                  </div>
+                ) : (
+                  <div>
+                    {/* <p className='text-h6 font-medium leading-[120%] text-brand-red'>Spend ${deliveryAmount - cartTotalAmount} more for free delivery.</p> */}
+                  </div>
+                )}
+              </div>
+            )}
             <div className={classes.orderTotal}>
-              <p className='text-b18 font-semibold leading-headingLH1 text-brand-dark'>Order Total</p>
-              <p className='text-b18 font-semibold leading-headingLH1 text-brand-dark'>{cartTotal.formatted}</p>
+              <p className="text-b18 font-semibold leading-headingLH1 text-brand-dark">
+                Order Total
+              </p>
+              <p className="text-b18 font-semibold leading-headingLH1 text-brand-dark">
+                {cartTotal.formatted}
+              </p>
             </div>
           </ul>
         </div>
@@ -142,8 +165,8 @@ export const CheckoutPage: React.FC<{
         </div>
       )} */}
       {/* {clientSecret && ( */}
-        <Fragment>
-          {/* <h3 className={classes.payment}>Payment Details</h3>
+      <Fragment>
+        {/* <h3 className={classes.payment}>Payment Details</h3>
           {error && <p>{`Error: ${error}`}</p>}
           <Elements
             stripe={stripe}
@@ -170,9 +193,9 @@ export const CheckoutPage: React.FC<{
               },
             }}
           > */}
-            {!cartIsEmpty && <CheckoutForm />}
-          {/* </Elements> */}
-        </Fragment>
+        {!cartIsEmpty && <CheckoutForm />}
+        {/* </Elements> */}
+      </Fragment>
     </Fragment>
   )
 }

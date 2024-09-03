@@ -75,7 +75,7 @@ export const ReviewModal: React.FC<{ productIds: string[] }> = ({ productIds }) 
         <div className="w-full flex justify-end mb-8 pl-0 pr-2">
           <button
             onClick={() => setModalIsOpen(true)}
-            className="flex items-center gap-3 p-[8px] bg-white outline-none border border-[0.3px] border-brand-dark-gray rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out outline-none cursor-pointer"
+            className="flex items-center gap-3 p-[8px] bg-white outline-none border-[0.3px] border-brand-dark/65-gray rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer"
           >
             <div className="w-12 h-12 flex justify-center items-center bg-brand-dark rounded-full">
               <Image width={32} height={32} alt="Senso Logo Sign" src="/logoMark.svg" />

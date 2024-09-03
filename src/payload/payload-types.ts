@@ -22,6 +22,7 @@ export interface Config {
   collections: {
     pages: Page;
     products: Product;
+    coupons: Coupon;
     orders: Order;
     media: Media;
     categories: Category;
@@ -597,6 +598,22 @@ export interface Product {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "coupons".
+ */
+export interface Coupon {
+  id: string;
+  code: string;
+  discountType?: ('fixed' | 'percentage') | null;
+  discountAmount?: number | null;
+  appliesTo?: (string | Product)[] | null;
+  usageLimit?: number | null;
+  expirationDate?: string | null;
+  status?: ('active' | 'inactive') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders".
  */
 export interface Order {
@@ -771,6 +788,8 @@ export interface Settings {
     | 'CNY'
     | 'SEK'
     | 'NZD';
+  enableDelivery?: boolean | null;
+  deliveryValue?: number | null;
   socials?:
     | {
         link: {
@@ -815,9 +834,11 @@ export interface Header {
         };
         subMenuItems?:
           | {
+              showAs?: ('list' | 'banner') | null;
               menuHeading: string;
               subMenuLinks?:
                 | {
+                    media?: string | Media | null;
                     link: {
                       type?: ('reference' | 'custom') | null;
                       newTab?: boolean | null;
@@ -829,6 +850,24 @@ export interface Header {
                       url?: string | null;
                       label: string;
                     };
+                    enableSubMenuTwo?: boolean | null;
+                    subMenuTwo?:
+                      | {
+                          media?: string | Media | null;
+                          link: {
+                            type?: ('reference' | 'custom') | null;
+                            newTab?: boolean | null;
+                            icon?: string | Media | null;
+                            reference?: {
+                              relationTo: 'pages';
+                              value: string | Page;
+                            } | null;
+                            url?: string | null;
+                            label: string;
+                          };
+                          id?: string | null;
+                        }[]
+                      | null;
                     id?: string | null;
                   }[]
                 | null;

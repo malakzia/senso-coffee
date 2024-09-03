@@ -58,7 +58,7 @@ export default async function Cart() {
 
   return (
     <section className={classes.container}>
-      <div className="container mx-auto pb-8 pt-32 px-4 lg:py-16 lg:px-8">
+      <div className="container mx-auto pb-8 lg:pt-[160px] pt-[130px] px-4 lg:py-16 lg:px-8">
         <div className="flex flex-col">
           <h3 className='text-h3 text-brand-dark leading-headingLH2'>Cart</h3>
           <CartPage settings={settings} page={page} />

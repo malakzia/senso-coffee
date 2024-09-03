@@ -32,10 +32,10 @@ const HeroBannerCarousel: React.FC<Page['hero']> = ({ heroBanners }) => {
       responsive={responsive}
       infinite
       showDots={false}
-      arrows={true}
+      arrows={false}
       autoPlay
-      autoPlaySpeed={10000}
-      transitionDuration={1000}
+      autoPlaySpeed={3000}
+      transitionDuration={500}
       containerClass={classes.carouselContainerHero}
       itemClass={classes.carouselItemHero}
     >

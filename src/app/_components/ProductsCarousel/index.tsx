@@ -68,24 +68,28 @@ export const ProductsCarousel: React.FC<{
 
   return (
     <div className={[className, 'bg-white flex flex-col lg:mr-3 h-full'].filter(Boolean).join(' ')}>
-      <div className='flex w-full justify-center lg:justify-start'>
-      <Link
-        href={href}
-        className={
-          'no-underline block relative w-full max-w-[330px] max-h-[300px] lg:max-h-[350px] h-full min-h-[350px]'
-        }
-      >
-        {!metaImage && (
-          <div className={'flex items-center justify-center w-full h-full bg-slate-50'}>
-            No image
-          </div>
-        )}
-        {metaImage && typeof metaImage !== 'string' && (
-          <Media imgClassName={'object-contain bg-white object-center'} resource={metaImage} fill />
-        )}
-      </Link>
+      <div className="flex w-full justify-center lg:justify-start">
+        <Link
+          href={href}
+          className={
+            'no-underline block relative w-full max-w-[330px] max-h-[300px] lg:max-h-[350px] h-full min-h-[350px]'
+          }
+        >
+          {!metaImage && (
+            <div className={'flex items-center justify-center w-full h-full bg-slate-50'}>
+              No image
+            </div>
+          )}
+          {metaImage && typeof metaImage !== 'string' && (
+            <Media
+              imgClassName={'object-contain bg-white object-center'}
+              resource={metaImage}
+              fill
+            />
+          )}
+        </Link>
       </div>
-      <div className={'flex flex-grow flex-col gap-5 justify-between'}>
+      <div className={'flex flex-grow flex-col gap-[12px] mt-[8px] justify-between w-full'}>
         <div className="flex flex-col gap-1">
           {showCategories && hasCategories && (
             <div className="flex flex-row gap-1 flex-wrap w-full">

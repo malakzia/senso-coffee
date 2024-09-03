@@ -10,6 +10,7 @@ import { CATEGORIES } from '../_graphql/categories'
 import { DISTRIBUTORS } from '../_graphql/distributors'
 import { REVIEWS_QUERY } from '../_graphql/reviews'
 import { PRODUCTS_REVIEWS_QUERY } from '../_graphql/products-reviews'
+import { COUPONS } from '../_graphql/coupons'
 
 const queryMap = {
   pages: {
@@ -39,6 +40,10 @@ const queryMap = {
   productsReviews: {
     query: PRODUCTS_REVIEWS_QUERY,
     key: 'ProductsReviews',
+  },
+  coupons: {
+    query: COUPONS,
+    key: 'Coupons',
   }
 }
 
@@ -61,7 +66,7 @@ export const fetchDocs = async <T>(
       'Content-Type': 'application/json',
       ...(token?.value && draft ? { Authorization: `JWT ${token.value}` } : {}),
     },
-    cache: 'no-store',
+    // cache: 'no-store',
     next: { tags: [collection] },
     body: JSON.stringify({
       query: queryMap[collection].query,
