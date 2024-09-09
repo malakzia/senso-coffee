@@ -52,7 +52,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
                     onMouseEnter={() => setHoveredSubMenuIndex(j)}
                     onMouseLeave={() => setHoveredSubMenuIndex(null)}
                   >
-                    <h6 className="text-lg font-medium text-brand-dark text-ellipsis line-clamp-1">
+                    <h6 className="text-b18 font-medium text-brand-dark text-ellipsis line-clamp-1">
                       {menuItem.menuHeading}
                     </h6>
                     <div className="mt-2 flex flex-col gap-[8px]">
@@ -133,7 +133,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
                                       return (
                                         <CMSLink
                                           key={index}
-                                          className="text-brand-black text-b16 hover:text-brand-orange w-full h-full flex items-center justify-start gap-[12px] no-underline leading-[120%] line-clamp-3 text-ellipsis"
+                                          className="text-brand-black text-b14 hover:text-brand-orange w-full h-full flex items-center justify-start gap-[12px] no-underline leading-[120%] line-clamp-3 text-ellipsis"
                                           {...subMenuItemTwo.link}
                                         >
                                           {subMenuItemTwo?.media && (
