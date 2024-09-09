@@ -7594,6 +7594,7 @@ type Coupon {
   discountAmount: Float
   appliesTo(draft: Boolean): [Product!]
   usageLimit: Float
+  couponUsed: Float
   expirationDate: DateTime
   status: Coupon_status
   updatedAt: DateTime
@@ -7630,6 +7631,7 @@ input Coupon_where {
   discountAmount: Coupon_discountAmount_operator
   appliesTo: Coupon_appliesTo_operator
   usageLimit: Coupon_usageLimit_operator
+  couponUsed: Coupon_couponUsed_operator
   expirationDate: Coupon_expirationDate_operator
   status: Coupon_status_operator
   updatedAt: Coupon_updatedAt_operator
@@ -7682,6 +7684,16 @@ input Coupon_appliesTo_operator {
 }
 
 input Coupon_usageLimit_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Coupon_couponUsed_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -7755,6 +7767,7 @@ input Coupon_where_and {
   discountAmount: Coupon_discountAmount_operator
   appliesTo: Coupon_appliesTo_operator
   usageLimit: Coupon_usageLimit_operator
+  couponUsed: Coupon_couponUsed_operator
   expirationDate: Coupon_expirationDate_operator
   status: Coupon_status_operator
   updatedAt: Coupon_updatedAt_operator
@@ -7770,6 +7783,7 @@ input Coupon_where_or {
   discountAmount: Coupon_discountAmount_operator
   appliesTo: Coupon_appliesTo_operator
   usageLimit: Coupon_usageLimit_operator
+  couponUsed: Coupon_couponUsed_operator
   expirationDate: Coupon_expirationDate_operator
   status: Coupon_status_operator
   updatedAt: Coupon_updatedAt_operator
@@ -7797,6 +7811,7 @@ type CouponsDocAccessFields {
   discountAmount: CouponsDocAccessFields_discountAmount
   appliesTo: CouponsDocAccessFields_appliesTo
   usageLimit: CouponsDocAccessFields_usageLimit
+  couponUsed: CouponsDocAccessFields_couponUsed
   expirationDate: CouponsDocAccessFields_expirationDate
   status: CouponsDocAccessFields_status
   updatedAt: CouponsDocAccessFields_updatedAt
@@ -7915,6 +7930,29 @@ type CouponsDocAccessFields_usageLimit_Update {
 }
 
 type CouponsDocAccessFields_usageLimit_Delete {
+  permission: Boolean!
+}
+
+type CouponsDocAccessFields_couponUsed {
+  create: CouponsDocAccessFields_couponUsed_Create
+  read: CouponsDocAccessFields_couponUsed_Read
+  update: CouponsDocAccessFields_couponUsed_Update
+  delete: CouponsDocAccessFields_couponUsed_Delete
+}
+
+type CouponsDocAccessFields_couponUsed_Create {
+  permission: Boolean!
+}
+
+type CouponsDocAccessFields_couponUsed_Read {
+  permission: Boolean!
+}
+
+type CouponsDocAccessFields_couponUsed_Update {
+  permission: Boolean!
+}
+
+type CouponsDocAccessFields_couponUsed_Delete {
   permission: Boolean!
 }
 
@@ -17366,6 +17404,7 @@ type CouponsFields {
   discountAmount: CouponsFields_discountAmount
   appliesTo: CouponsFields_appliesTo
   usageLimit: CouponsFields_usageLimit
+  couponUsed: CouponsFields_couponUsed
   expirationDate: CouponsFields_expirationDate
   status: CouponsFields_status
   updatedAt: CouponsFields_updatedAt
@@ -17484,6 +17523,29 @@ type CouponsFields_usageLimit_Update {
 }
 
 type CouponsFields_usageLimit_Delete {
+  permission: Boolean!
+}
+
+type CouponsFields_couponUsed {
+  create: CouponsFields_couponUsed_Create
+  read: CouponsFields_couponUsed_Read
+  update: CouponsFields_couponUsed_Update
+  delete: CouponsFields_couponUsed_Delete
+}
+
+type CouponsFields_couponUsed_Create {
+  permission: Boolean!
+}
+
+type CouponsFields_couponUsed_Read {
+  permission: Boolean!
+}
+
+type CouponsFields_couponUsed_Update {
+  permission: Boolean!
+}
+
+type CouponsFields_couponUsed_Delete {
   permission: Boolean!
 }
 
@@ -21966,6 +22028,7 @@ input mutationCouponInput {
   discountAmount: Float
   appliesTo: [String]
   usageLimit: Float
+  couponUsed: Float
   expirationDate: String
   status: Coupon_status_MutationInput
   updatedAt: String
@@ -21988,6 +22051,7 @@ input mutationCouponUpdateInput {
   discountAmount: Float
   appliesTo: [String]
   usageLimit: Float
+  couponUsed: Float
   expirationDate: String
   status: CouponUpdate_status_MutationInput
   updatedAt: String

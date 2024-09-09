@@ -5,6 +5,7 @@ export const COUPONS = `
     Coupons(limit: 300) {
       docs {
         id
+        code
       }
     }
   }
@@ -18,8 +19,14 @@ export const COUPON = `
         code
         discountType
         discountAmount
-        appliesTo
+        appliesTo {
+          id
+          title
+          priceJSON
+          slug
+        }
         usageLimit
+        couponUsed
         expirationDate
         status
       }

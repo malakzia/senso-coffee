@@ -30,7 +30,7 @@ export const CheckoutForm: React.FC<{}> = () => {
   const [isLoading, setIsLoading] = React.useState(false)
   const router = useRouter()
   const { cart, cartTotal } = useCart()
-  const { currency } = useCurrency() // Call hook here
+  const { currency } = useCurrency()
 
   const {
     register,
@@ -91,7 +91,7 @@ export const CheckoutForm: React.FC<{}> = () => {
         setIsLoading(false)
       }
     },
-    [router, cart, cartTotal, currency], // Add currency to dependency array
+    [router, cart, cartTotal, currency],
   )
 
   return (

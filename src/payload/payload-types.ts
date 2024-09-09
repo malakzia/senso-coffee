@@ -607,6 +607,7 @@ export interface Coupon {
   discountAmount?: number | null;
   appliesTo?: (string | Product)[] | null;
   usageLimit?: number | null;
+  couponUsed?: number | null;
   expirationDate?: string | null;
   status?: ('active' | 'inactive') | null;
   updatedAt: string;

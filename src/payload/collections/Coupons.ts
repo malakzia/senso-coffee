@@ -45,7 +45,14 @@ const Coupons: CollectionConfig = {
     },
     {
       name: 'usageLimit',
+      label: 'Coupon usage limit',
       type: 'number',
+      min: 0,
+    },
+    {
+      name: 'couponUsed',
+      type: 'number',
+      label: 'Coupon used times',
       min: 0,
     },
     {

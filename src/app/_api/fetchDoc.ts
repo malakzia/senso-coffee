@@ -33,7 +33,7 @@ export const fetchDoc = async <T>(args: {
   id?: string
   draft?: boolean
 }): Promise<T> => {
-  const { collection, slug, draft } = args || {}
+  const { collection, slug, draft, id } = args || {}
 
   if (!queryMap[collection]) throw new Error(`Collection ${collection} not found`)
 
@@ -55,6 +55,7 @@ export const fetchDoc = async <T>(args: {
     body: JSON.stringify({
       query: queryMap[collection].query,
       variables: {
+        id,
         slug,
         draft,
       },
