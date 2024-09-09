@@ -67,7 +67,7 @@ export const ProductHero: React.FC<{
   return (
     <Fragment>
       <section className="">
-        <div className="container mx-auto pt-28 pb-0 px-4 lg:pb-0 lg:px-8 flex flex-col">
+        <div className="container mx-auto lg:pt-[160px] pt-[130px] pb-0 px-4 lg:pb-0 lg:px-8 flex flex-col">
           <div className="flex flex-col gap-6 items-center w-full lg:flex-row lg:gap-16">
             <div className="w-full max-w-[696px] lg:max-h-[650px]">
               <ProductImages productImages={productImages} />
