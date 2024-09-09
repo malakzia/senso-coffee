@@ -36,34 +36,34 @@ export const InstaFeedBlock: React.FC<Props> = ({ heading, subHeading }) => {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
-  const fetchFeed = async () => {
-    try {
-      const url = new URL('https://graph.instagram.com/me/media')
-      url.searchParams.append('scope', 'user_profile,user_media,instagram_graph_user_profile')
-      url.searchParams.append('fields', 'id,caption,media_url,media_type,timestamp,permalink')
-      url.searchParams.append(
-        'access_token',
-        'IGQWRNbE5iM05kUjU2MEZAnd0EwbUdUaTJ2aTFfZAW5na29qaDZACbnMzSmNaZAHhqX1pIWU9LaWFDalF3SmVxWTNkUDdvWlk4eHRNM1EzaTJrbk9pLW8wMzFVY2xNUEZACRVFOSHJZANC1MWkRZAMmdpODZA1XzRUaVhqd0kZD',
-      )
+  // const fetchFeed = async () => {
+  //   try {
+  //     const url = new URL('https://graph.instagram.com/me/media')
+  //     url.searchParams.append('scope', 'user_profile,user_media,instagram_graph_user_profile')
+  //     url.searchParams.append('fields', 'id,caption,media_url,media_type,timestamp,permalink')
+  //     url.searchParams.append(
+  //       'access_token',
+  //       'IGQWRNbE5iM05kUjU2MEZAnd0EwbUdUaTJ2aTFfZAW5na29qaDZACbnMzSmNaZAHhqX1pIWU9LaWFDalF3SmVxWTNkUDdvWlk4eHRNM1EzaTJrbk9pLW8wMzFVY2xNUEZACRVFOSHJZANC1MWkRZAMmdpODZA1XzRUaVhqd0kZD',
+  //     )
 
-      const response = await fetch(url.toString())
-      const result = await response.json()
+  //     const response = await fetch(url.toString())
+  //     const result = await response.json()
 
-      if (response.ok) {
-        setInstagramFeed(result)
-      } else {
-        setError(result.error.message)
-      }
-    } catch (err: any) {
-      console.error('Error fetching Instagram feed:', err.message)
-      setError(err.message)
-    } finally {
-      setLoading(false) // Set loading to false once the data is fetched
-    }
-  }
+  //     if (response.ok) {
+  //       setInstagramFeed(result)
+  //     } else {
+  //       setError(result.error.message)
+  //     }
+  //   } catch (err: any) {
+  //     console.error('Error fetching Instagram feed:', err.message)
+  //     setError(err.message)
+  //   } finally {
+  //     setLoading(false) // Set loading to false once the data is fetched
+  //   }
+  // }
 
   useEffect(() => {
-    fetchFeed()
+    // fetchFeed()
   }, [])
 
   return (
@@ -75,10 +75,10 @@ export const InstaFeedBlock: React.FC<Props> = ({ heading, subHeading }) => {
           <h4 className="text-h4 font-normal text-brand-dark tracking-tight">{heading || ''}</h4>
           <p className="text-b16 font-normal text-brand-dark mt-3">{subHeading || ''}</p>
           {loading ? (
-            <LoadingShimmer number={6} height={210} /> 
+            <LoadingShimmer number={6} height={210} />
           ) : (
             <div className="w-full grid grid-cols-1 lg:grid-cols-6 gap-6 min-h-[240px] mt-8">
-              {instagramFeed?.data?.slice(0, 6).map((post: InstagramPost) => (
+              {/* {instagramFeed?.data?.slice(0, 6).map((post: InstagramPost) => (
                 <div
                   key={post.id}
                   className="relative group w-full max-w-[210px] max-h-[210px] h-full"
@@ -110,7 +110,7 @@ export const InstaFeedBlock: React.FC<Props> = ({ heading, subHeading }) => {
                     </div>
                   </Link>
                 </div>
-              ))}
+              ))} */}
             </div>
           )}
         </div>
