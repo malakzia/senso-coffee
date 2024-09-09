@@ -1,7 +1,15 @@
 import { CollectionConfig } from 'payload/types'
+import { anyone } from '../access/anyone'
+import { admins } from '../access/admins'
 
 const Coupons: CollectionConfig = {
   slug: 'coupons',
+  access: {
+    read: anyone,
+    create: admins,
+    update: anyone,
+    delete: admins,
+  },
   fields: [
     {
       name: 'code',
