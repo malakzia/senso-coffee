@@ -33,9 +33,9 @@ const FooterComponent = ({ footer, settings }: { footer: Footer; settings: Setti
         "
         >
           <Image alt={icon?.alt} src={icon?.url} width={190} height={80}></Image>
-          <div className="flex flex-row items-center gap-7">
+          <div className="flex flex-row items-center gap-[12px]">
             {socials.map(item => {
-              const icon = item?.link?.icon as Media
+              // const icon = item?.link?.icon as Media
 
               return (
                 <Button
@@ -45,7 +45,8 @@ const FooterComponent = ({ footer, settings }: { footer: Footer; settings: Setti
                   el="link"
                   appearance="none"
                 >
-                  <Image src={icon?.url} alt={icon?.alt || 'Button Icon'} width={28} height={28} />
+                  {item?.link?.label || 'Social Media Link'}
+                  {/* <Image src={icon?.url} alt={icon?.alt || 'Button Icon'} width={28} height={28} /> */}
                 </Button>
               )
             })}
