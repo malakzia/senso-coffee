@@ -44,6 +44,7 @@ const FooterComponent = ({ footer, settings }: { footer: Footer; settings: Setti
                   href={item?.link?.url}
                   el="link"
                   appearance="none"
+                  className='text-white'
                 >
                   {item?.link?.label || 'Social Media Link'}
                   {/* <Image src={icon?.url} alt={icon?.alt || 'Button Icon'} width={28} height={28} /> */}

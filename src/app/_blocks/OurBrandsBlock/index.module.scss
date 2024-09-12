@@ -28,15 +28,20 @@
     background-color: transparent;
     text-decoration: none;
     display: inline-flex;
-    padding: 12px 24px;
+    padding: 8px 16px;
     line-height: 120%;
     font-size: 16px;
-    border-radius: 16px;
-    background-color: #085269;
+    border-radius: 12px;
+    align-items: center;
+    transition: .5s;
     color: white;
-    box-shadow:
-        inset -4px -4px 8px rgba(8, 82, 105, 0.25),
-        inset 0 4px 4px rgba(255, 255, 255, 0.5);
+    background-image: linear-gradient(to right, #085269 0%, #15647c 51%, #085269 100%);
+    background-size: 200% auto;
+
+    &:hover {
+        background-position: right center;
+        box-shadow: 0 4px 15px 0 rgba(8, 82, 105, 0.5);
+    }
 }
 
 .buttonSecondary {
@@ -48,14 +53,21 @@
     cursor: pointer;
     display: inline-flex;
     justify-content: center;
+    align-items: center;
     background-color: transparent;
     text-decoration: none;
     display: inline-flex;
-    padding: 12px 24px;
+    padding: 8px 16px;
     line-height: 120%;
     font-size: 16px;
-    border-radius: 16px;
+    border-radius: 12px;
     background-color: transparent;
     color: white;
-    border: 1px solid white;
+    min-height: 52px;
+    border: 1px solid #ffffff;
+
+    &:hover {
+        background-color: #41210D;
+        border-color: #41210D;
+    }
 }
